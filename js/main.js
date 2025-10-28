@@ -334,6 +334,23 @@
         _this.removeClass('open');
     });
 
+    // Mobile dropdown click handling
+    $('.dropdown .nav-link[data-bs-toggle="dropdown"]').on('click', function(e) {
+        if (getWindowWidth() <= menuBreakPoint) {
+            e.preventDefault();
+            var dropdown = $(this).closest('.dropdown');
+            var isOpen = dropdown.hasClass('open');
+            
+            // Close all dropdowns
+            $('.dropdown').removeClass('open');
+            
+            // Toggle this dropdown
+            if (!isOpen) {
+                dropdown.addClass('open');
+            }
+        }
+    });
+
     // Add active class to current menu
     var pgurl = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
     var $hash = window.location.hash.substring(1);

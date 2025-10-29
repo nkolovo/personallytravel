@@ -6,7 +6,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap');
 /* variable */
 :root {     
-    --base-color: #ac8d56;
+    /*--base-color: #ac8d56;*/
+    --base-color: #fb8500;
+    --secondary-color: #0f3554;
     --medium-gray:#817F7C;
     --very-light-gray:#F4F1ED;
     --alt-font: 'Rufina', serif;

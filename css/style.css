@@ -44,7 +44,7 @@ Table of contents
     02. CSS color variable
 ====================================== */
 :root {
-  --base-color: #2946f3;
+  --base-color: #fb8500;
   --white: #ffffff;
   --black: #000000;
   --red: #dc3131;
@@ -3281,6 +3281,18 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
 /* Background color */
 .bg-base-color {
   background-color: var(--base-color);
+}
+.btn.btn-box-shadow.bg-base-color:hover, .btn.btn-box-shadow.bg-base-color:active {
+  background: var(--base-color);
+  color: var(--dark-gray);
+}
+.bg-secondary-color {
+  background-color: var(--secondary-color);
+  color:white;
+}
+.btn.btn-box-shadow.bg-secondary-color:hover, .btn.btn-box-shadow.bg-secondary-color:active {
+  background: var(--secondary-color);
+  color: white;
 }
 .bg-dark-gray,
 .bg-dark-gray:focus {
@@ -12341,7 +12353,6 @@ blockquote footer {
   -webkit-transform-origin: center;
   -ms-transform-origin: center;
   transform-origin: center;
-  opacity: 1;
 }
 /* Icon with text style 11 */
 .icon-with-text-style-11 {
@@ -19602,4 +19613,51 @@ footer .footer-navbar .nav-item:last-child a {
 }
 .footer-demo img {
   max-height: 55px !important;
+}
+
+.fi-trustbar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+  text-align: center;
+  align-items: center;
+}
+
+.fi-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #334155;
+}
+
+.fi-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff5e9;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  color: #fb8500;
+}
+
+.fi-svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.fi-badge-text {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .fi-trustbar {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 14px;
+  }
 }

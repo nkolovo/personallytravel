@@ -1,586 +1,1294 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personally Greece — Bespoke Travel, Designed for You</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#042C53;
-  --navy-mid:#0C447C;
-  --aegean:#185FA5;
-  --sky:#85B7EB;
-  --sky-light:#B5D4F4;
-  --gold:#EF9F27;
-  --sand:#FAC775;
-  --linen:#FAEEDA;
-  --linen-mid:#F5E8C8;
-  --white:#ffffff;
-  --body-text:#3a5570;
-  --muted:#6a849a;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Jost',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
-a{text-decoration:none}
-img{display:block;width:100%}
-
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.2rem 5%;display:flex;justify-content:space-between;align-items:center;transition:background .3s,box-shadow .3s}
-nav.scrolled{background:var(--navy);box-shadow:0 2px 24px rgba(4,44,83,.35)}
-.nav-logo img{height:36px;filter:brightness(0) invert(1)}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:rgba(255,255,255,.85);font-size:.8rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
-.nav-links a:hover{color:var(--sand)}
-.nav-tel{font-size:.78rem;color:rgba(255,255,255,.6);letter-spacing:.05em}
-.nav-cta{background:var(--gold);color:var(--navy)!important;padding:.5rem 1.4rem;border-radius:2px;font-size:.78rem!important;font-weight:500!important;letter-spacing:.1em!important;transition:background .2s}
-.nav-cta:hover{background:var(--sand)!important}
-
-/* ── HERO ── */
-.hero{min-height:100vh;background:linear-gradient(160deg,#021a33 0%,#042C53 40%,#0C447C 75%,#185FA5 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:8rem 5% 6rem}
-.hero-pattern{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:36px 36px}
-.hero-content{text-align:center;z-index:1;max-width:800px}
-.hero-eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--sand);margin-bottom:1.4rem}
-.hero h1{font-size:clamp(2.8rem,6.5vw,5.2rem);color:var(--white);line-height:1.1;font-weight:400;margin-bottom:1.5rem}
-.hero h1 em{color:var(--sand);font-style:italic}
-.hero-sub{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,.78);max-width:580px;margin:0 auto 2.5rem;line-height:1.85}
-.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn-gold{display:inline-block;background:var(--gold);color:var(--navy);padding:.9rem 2.2rem;font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;transition:background .2s,transform .2s}
-.btn-gold:hover{background:var(--sand);transform:translateY(-1px)}
-.btn-ghost{display:inline-block;border:1px solid rgba(255,255,255,.35);color:var(--white);padding:.9rem 2.2rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;transition:border-color .2s,background .2s}
-.btn-ghost:hover{border-color:var(--sand);background:rgba(255,255,255,.06)}
-.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase}
-.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(255,255,255,.45),transparent);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
-.hero-wave{position:absolute;bottom:0;left:0;right:0}
-
-/* ── PROCESS STRIP ── */
-.process{background:var(--linen);padding:3.5rem 5%}
-.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1000px;margin:0 auto}
-.process-item{display:flex;align-items:flex-start;gap:1rem}
-.process-icon{width:48px;height:48px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.2rem}
-.process-item h4{font-family:'Jost',sans-serif;font-size:.88rem;font-weight:500;color:var(--navy);margin-bottom:.35rem}
-.process-item p{font-size:.83rem;color:var(--body-text);line-height:1.7}
-
-/* ── ABOUT ── */
-.about{padding:6rem 5%;background:var(--white)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
-.about-eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--aegean);margin-bottom:.8rem}
-.about h2{font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:1.2rem}
-.about h2 em{color:var(--aegean);font-style:italic}
-.about p{font-size:.95rem;font-weight:300;color:var(--body-text);line-height:1.85;margin-bottom:1.5rem}
-.about-link{font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--aegean);border-bottom:1px solid var(--sky);padding-bottom:2px;transition:color .2s}
-.about-link:hover{color:var(--navy)}
-.about-visual{position:relative}
-.about-img-main{border-radius:4px;overflow:hidden;background:linear-gradient(135deg,#0C447C,#185FA5);height:480px;display:flex;align-items:center;justify-content:center}
-.about-img-main svg{opacity:.15}
-.about-img-float{position:absolute;bottom:-2rem;right:-2rem;width:200px;background:var(--navy);border-radius:4px;padding:1.5rem;text-align:center}
-.about-img-float .num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--sand);line-height:1}
-.about-img-float .lbl{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:4px}
-.badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
-.badge{font-size:.72rem;font-weight:500;letter-spacing:.08em;padding:5px 12px;border-radius:2px;background:var(--linen);color:var(--navy);border:1px solid var(--linen-mid)}
-
-/* ── RATINGS ── */
-.ratings{background:var(--navy);padding:5rem 5%}
-.ratings-header{text-align:center;margin-bottom:3rem}
-.ratings-header .eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin-bottom:.8rem}
-.ratings-header h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--white);font-weight:400}
-.ratings-header h2 em{color:var(--sand);font-style:italic}
-.ratings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:900px;margin:0 auto 2.5rem}
-.rating-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:1.8rem;position:relative}
-.rating-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:4.5rem;color:var(--sand);position:absolute;top:.5rem;left:1.2rem;line-height:1;opacity:.6}
-.rating-stars{color:var(--gold);font-size:.8rem;margin-bottom:.8rem}
-.rating-text{font-size:.92rem;font-style:italic;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:1.2rem;padding-top:1.2rem}
-.rating-author{display:flex;align-items:center;gap:.8rem}
-.rating-avatar{width:38px;height:38px;border-radius:50%;background:var(--aegean);display:flex;align-items:center;justify-content:center;font-size:.78rem;color:var(--white);font-weight:500;flex-shrink:0}
-.rating-name{font-size:.85rem;font-weight:500;color:var(--white)}
-.rating-trip{font-size:.75rem;color:rgba(255,255,255,.45)}
-.ratings-footer{text-align:center;font-size:.85rem;color:rgba(255,255,255,.45)}
-.ratings-footer strong{color:var(--sand)}
-
-/* ── WHY ── */
-.why{padding:6rem 5%;background:var(--linen)}
-.why-header{text-align:center;margin-bottom:3rem}
-.why-header .eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--aegean);margin-bottom:.8rem}
-.why-header h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--navy);font-weight:400}
-.why-header h2 em{color:var(--aegean);font-style:italic}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1100px;margin:0 auto}
-.why-card{background:var(--white);border-radius:4px;padding:2rem;border:1px solid rgba(4,44,83,.08);transition:box-shadow .2s,transform .2s}
-.why-card:hover{box-shadow:0 8px 32px rgba(4,44,83,.1);transform:translateY(-3px)}
-.why-card-img{height:200px;border-radius:3px;margin-bottom:1.2rem;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:3rem}
-.why-c1{background:linear-gradient(135deg,var(--navy),var(--aegean))}
-.why-c2{background:linear-gradient(135deg,var(--aegean),var(--sky))}
-.why-c3{background:linear-gradient(135deg,#0F6E56,var(--aegean))}
-.why-card h3{font-size:1.25rem;color:var(--navy);margin-bottom:.6rem}
-.why-card p{font-size:.88rem;color:var(--body-text);line-height:1.75}
-
-/* ── DESTINATIONS ── */
-.destinations{padding:6rem 5%;background:var(--white)}
-.dest-header{text-align:center;margin-bottom:3rem}
-.dest-header .eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--aegean);margin-bottom:.8rem}
-.dest-header h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--navy);font-weight:400}
-.dest-header h2 em{color:var(--aegean);font-style:italic}
-.dest-header p{font-size:.95rem;color:var(--body-text);max-width:520px;margin:.8rem auto 0;line-height:1.8}
-.dest-feature{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:1100px;margin:0 auto}
-.dest-visual{height:500px;border-radius:4px;background:linear-gradient(160deg,#042C53,#185FA5,#0F6E56);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:2.5rem}
-.dest-visual-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,44,83,.9) 0%,rgba(4,44,83,.1) 60%)}
-.dest-visual-pattern{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:28px 28px}
-.dest-visual-content{position:relative;z-index:1}
-.dest-visual .tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);margin-bottom:.5rem}
-.dest-visual h3{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--white);font-weight:400;margin-bottom:.4rem}
-.dest-visual p{font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.7;max-width:340px}
-.dest-info h3{font-size:1.8rem;color:var(--navy);font-weight:400;margin-bottom:1rem}
-.dest-info p{font-size:.92rem;color:var(--body-text);line-height:1.85;margin-bottom:1.5rem}
-.dest-highlights{list-style:none}
-.dest-highlights li{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:.85rem;font-size:.88rem;color:var(--body-text);line-height:1.6}
-.dest-highlights li::before{content:'';width:20px;height:2px;background:var(--gold);margin-top:9px;flex-shrink:0}
-.more-dest{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
-.dest-chip{font-size:.78rem;font-weight:500;padding:8px 16px;border-radius:2px;border:1px solid rgba(4,44,83,.15);color:var(--body-text);transition:border-color .2s,color .2s}
-.dest-chip:hover{border-color:var(--aegean);color:var(--aegean)}
-.dest-chip.coming-soon{opacity:.5;cursor:default}
-
-/* ── ITINERARIES ── */
-.itineraries{padding:6rem 5%;background:var(--navy)}
-.itin-header{text-align:center;margin-bottom:3rem}
-.itin-header .eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin-bottom:.8rem}
-.itin-header h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--white);font-weight:400}
-.itin-header h2 em{color:var(--sand);font-style:italic}
-.itin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto}
-.itin-card{border-radius:4px;overflow:hidden;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);transition:transform .2s,box-shadow .2s}
-.itin-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
-.itin-img{height:280px;display:flex;align-items:flex-end;padding:1.5rem;position:relative}
-.itin-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,44,83,.88) 0%,transparent 55%)}
-.itin-tag{position:absolute;top:1rem;left:1rem;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;background:var(--gold);color:var(--navy);padding:4px 10px;border-radius:2px;font-weight:500}
-.itin-title-wrap{position:relative;z-index:1}
-.itin-days{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sand);margin-bottom:4px}
-.itin-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);font-weight:400}
-.itin-body{padding:1.2rem}
-.itin-desc{font-size:.83rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:1rem}
-.itin-meta{display:flex;justify-content:space-between;align-items:center}
-.itin-price{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--sand)}
-.itin-price span{font-family:'Jost',sans-serif;font-size:.7rem;color:rgba(255,255,255,.4);font-weight:300}
-.itin-btn{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sky-light);border-bottom:1px solid rgba(133,183,235,.3);padding-bottom:2px}
-.itin-bg1{background:linear-gradient(160deg,#0C447C,#185FA5)}
-.itin-bg2{background:linear-gradient(160deg,#042C53,#0C447C)}
-.itin-bg3{background:linear-gradient(160deg,#185FA5,#0F6E56)}
-
-/* ── PERKS STRIP ── */
-.perks{background:var(--gold);padding:1.8rem 5%}
-.perks-list{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
-.perk{display:flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:500;color:var(--navy);letter-spacing:.06em}
-.perk::before{content:'✓';font-weight:700}
-
-/* ── NEWSLETTER ── */
-.newsletter{background:var(--linen);padding:5rem 5%;text-align:center}
-.newsletter .eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--aegean);margin-bottom:.8rem}
-.newsletter h2{font-size:clamp(1.6rem,3vw,2.4rem);color:var(--navy);font-weight:400;margin-bottom:.8rem}
-.newsletter p{font-size:.9rem;color:var(--body-text);max-width:440px;margin:0 auto 2rem;line-height:1.8}
-.newsletter-form{display:flex;gap:.8rem;justify-content:center;max-width:440px;margin:0 auto}
-.newsletter-form input{flex:1;padding:.8rem 1.2rem;border:1px solid rgba(4,44,83,.2);border-radius:2px;font-family:'Jost',sans-serif;font-size:.9rem;color:var(--navy);background:var(--white);outline:none}
-.newsletter-form input:focus{border-color:var(--aegean)}
-.newsletter-form button{background:var(--navy);color:var(--white);border:none;padding:.8rem 1.6rem;font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background .2s}
-.newsletter-form button:hover{background:var(--aegean)}
-.newsletter-privacy{font-size:.72rem;color:var(--muted);margin-top:.8rem}
-
-/* ── INSTAGRAM ── */
-.instagram{padding:4rem 5%;background:var(--white);text-align:center}
-.instagram .eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--aegean);margin-bottom:.8rem}
-.instagram h2{font-size:1.6rem;color:var(--navy);font-weight:400;margin-bottom:.5rem}
-.instagram p{font-size:.85rem;color:var(--muted);margin-bottom:2rem}
-.ig-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:1100px;margin:0 auto 1.5rem}
-.ig-tile{aspect-ratio:1;border-radius:3px;overflow:hidden;cursor:pointer;position:relative}
-.ig-tile-inner{width:100%;height:100%;transition:transform .3s}
-.ig-tile:hover .ig-tile-inner{transform:scale(1.05)}
-.ig-c1{background:linear-gradient(135deg,#0C447C,#185FA5)}
-.ig-c2{background:linear-gradient(135deg,#185FA5,#85B7EB)}
-.ig-c3{background:linear-gradient(135deg,#042C53,#0F6E56)}
-.ig-c4{background:linear-gradient(135deg,#EF9F27,#FAC775)}
-.ig-c5{background:linear-gradient(135deg,#185FA5,#042C53)}
-.ig-handle{font-size:.82rem;color:var(--aegean);font-weight:500;letter-spacing:.05em}
-
-/* ── FOOTER ── */
-footer{background:#021a33;padding:4rem 5% 2rem}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
-.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);margin-bottom:.6rem}
-.footer-brand span{color:var(--sand)}
-.footer-tagline{font-size:.8rem;color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
-.footer-desc{font-size:.83rem;color:rgba(255,255,255,.45);line-height:1.75;max-width:280px}
-.footer-col h4{font-family:'Jost',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1rem}
-.footer-col ul{list-style:none}
-.footer-col ul li{margin-bottom:.6rem}
-.footer-col ul a{font-size:.83rem;color:rgba(255,255,255,.5);transition:color .2s}
-.footer-col ul a:hover{color:var(--sand)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-copy{font-size:.75rem;color:rgba(255,255,255,.25)}
-.footer-socials{display:flex;gap:1.2rem}
-.footer-socials a{font-size:.75rem;letter-spacing:.08em;color:rgba(255,255,255,.35);transition:color .2s}
-.footer-socials a:hover{color:var(--sand)}
-.footer-divider{width:36px;height:2px;background:var(--gold);margin-bottom:1rem}
-
-@media(max-width:768px){
-  nav{padding:1rem 4%}
-  .nav-links,.nav-tel{display:none}
-  .process-grid,.why-grid,.itin-grid,.dest-feature,.about-grid,.footer-top{grid-template-columns:1fr}
-  .ig-grid{grid-template-columns:repeat(3,1fr)}
-  .newsletter-form{flex-direction:column}
-  .footer-bottom{flex-direction:column;text-align:center}
-  .hero{padding:7rem 5% 5rem}
-  .about-img-float{display:none}
-}
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav id="navbar">
-  <div class="nav-logo">
-    <span style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--white);letter-spacing:.04em">Personally <span style="color:var(--sand)">Greece</span></span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#destinations">Destinations</a></li>
-    <li><a href="#itineraries">Itineraries</a></li>
-    <li><a href="#founders">Our Story</a></li>
-    <li><a href="#contact" class="nav-cta">Plan My Trip</a></li>
-  </ul>
-  <span class="nav-tel" style="display:none">+30 210 000 0000</span>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-pattern"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Bespoke Greece, Designed for You</p>
-    <h1>Stress-Free Travel,<br><em>Planned Personally</em></h1>
-    <p class="hero-sub">Skip the hours of research. Our local experts craft personalised itineraries filled with authentic experiences — so you can simply enjoy the journey, with total confidence.</p>
-    <div class="hero-btns">
-      <a href="#contact" class="btn-gold">Plan My Dream Trip</a>
-      <a href="#itineraries" class="btn-ghost">View Itineraries</a>
-    </div>
-  </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    Scroll
-  </div>
-  <svg class="hero-wave" viewBox="0 0 1440 72" preserveAspectRatio="none" style="display:block;height:72px">
-    <path d="M0,36 C480,72 960,0 1440,36 L1440,72 L0,72 Z" fill="#FAEEDA"/>
-  </svg>
-</section>
-
-<!-- PROCESS STRIP -->
-<div class="process">
-  <div class="process-grid">
-    <div class="process-item">
-      <div class="process-icon">🤝</div>
-      <div>
-        <h4>Meet Your Local Travel Partner</h4>
-        <p>Get matched with a trusted planner who knows Greece inside out — its hidden villages, its best tables, its quietest coastlines.</p>
-      </div>
-    </div>
-    <div class="process-item">
-      <div class="process-icon">✉️</div>
-      <div>
-        <h4>Tell Us About Your Dream Trip</h4>
-        <p>Share your interests, travel style, and must-see moments. We shape a journey that's genuinely yours — not anyone else's.</p>
-      </div>
-    </div>
-    <div class="process-item">
-      <div class="process-icon">🏝️</div>
-      <div>
-        <h4>Relax — We've Got It Covered</h4>
-        <p>From logistics to local gems, every detail is handled so you can show up and simply enjoy Greece the way it deserves to be explored.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="about-grid">
-    <div>
-      <p class="about-eyebrow">About Personally Greece</p>
-      <h2>Experience Greece,<br><em>Planned for You</em></h2>
-      <p>We create custom travel itineraries that bring your dream Greek journey to life — from the first spark of an idea to the final sunset abroad. Our local experts design every route around your interests, pace, and sense of adventure.</p>
-      <p>You won't find package tours or templated plans here. Every trip is written from scratch, for one traveller or family at a time. That's the only way we work.</p>
-      <a href="#founders" class="about-link">Meet the founders →</a>
-      <div class="badges">
-        <span class="badge">Handcrafted itineraries</span>
-        <span class="badge">Loved by travellers worldwide</span>
-        <span class="badge">Tailored with care</span>
-        <span class="badge">Local expertise</span>
-        <span class="badge">No group tours</span>
-      </div>
-    </div>
-    <div class="about-visual">
-      <div class="about-img-main">
-        <svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="150" cy="100" r="80" stroke="white" stroke-width="1.5"/>
-          <path d="M80 100 Q150 30 220 100 Q150 170 80 100Z" stroke="white" stroke-width="1" fill="none"/>
-          <circle cx="150" cy="100" r="6" fill="white" opacity=".6"/>
-          <path d="M70 140 Q110 90 150 100 Q190 110 230 60" stroke="white" stroke-width="1" fill="none" stroke-dasharray="4 4"/>
-        </svg>
-      </div>
-      <div class="about-img-float">
-        <div class="num">★ 4.9</div>
-        <div class="lbl">Traveller Rating</div>
-        <div style="font-size:.7rem;color:rgba(255,255,255,.35);margin-top:6px">From 200+ journeys</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RATINGS -->
-<section class="ratings">
-  <div class="ratings-header">
-    <p class="eyebrow">What Travellers Say</p>
-    <h2>Exclusive <em>Guest Reviews</em></h2>
-  </div>
-  <div class="ratings-grid">
-    <div class="rating-card">
-      <div class="rating-stars">★★★★★</div>
-      <p class="rating-text">Every recommendation was extraordinary. The restaurant in Nafplio had no online presence — just a doorway in an old stone wall and the most memorable meal of our trip. That's the difference Personally Greece makes.</p>
-      <div class="rating-author">
-        <div class="rating-avatar">HM</div>
-        <div>
-          <div class="rating-name">Helen & Marcus</div>
-          <div class="rating-trip">Peloponnese & Athens, 10 days</div>
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <title>Crafto - The Multipurpose HTML5 Template</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="ThemeZaa" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Elevate your online presence with Crafto - a modern, versatile, multipurpose Bootstrap 5 responsive HTML5, SCSS template using highly creative 56+ ready demos."
+    />
+    <!-- favicon icon -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="images/apple-touch-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="images/apple-touch-icon-114x114.png"
+    />
+    <!-- google fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- style sheets and font icons  -->
+    <link rel="stylesheet" href="css/vendors.min.css" />
+    <link rel="stylesheet" href="css/icon.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/hotel-and-resort.css" />
+  </head>
+  <body data-mobile-nav-style="classic">
+    <!-- start header -->
+    <header>
+      <nav
+        class="navbar navbar-expand-lg header-light bg-white center-logo header-reverse"
+      >
+        <div class="container-fluid">
+          <div class="col-auto col-xl-2 col-lg-1 menu-logo">
+            <div class="d-none d-xl-block">
+              <div class="widget-text fw-600">
+                <i class="bi bi-telephone-outbound text-base-color me-10px"></i
+                ><a href="tel:1800222000">1 800 222 000</a>
+              </div>
+            </div>
+            <a class="navbar-brand" href="index.html">
+              <img
+                src="images/logo-text.png"
+                data-at2x="images/logo-text.png"
+                alt=""
+                class="default-logo"
+              />
+              <img
+                src="images/logo-text.png"
+                data-at2x="images/logo-text.png"
+                alt=""
+                class="alt-logo"
+              />
+              <img
+                src="images/logo-text.png"
+                data-at2x="images/logo-text.png"
+                alt=""
+                class="mobile-logo"
+              />
+            </a>
+          </div>
+          <div class="col-auto col-xl-8 col-lg-10 menu-order">
+            <button
+              class="navbar-toggler float-end"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-line"></span>
+              <span class="navbar-toggler-line"></span>
+              <span class="navbar-toggler-line"></span>
+              <span class="navbar-toggler-line"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-between"
+              id="navbarNav"
+            >
+              <ul class="navbar-nav navbar-left justify-content-end">
+                <li class="nav-item">
+                  <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item dropdown dropdown-with-icon">
+                  <a
+                    href="#"
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Destinations
+                  </a>
+                  <i
+                    class="fa-solid fa-angle-down dropdown-toggle"
+                    id="navbarDropdownMenuLink"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  ></i>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <li>
+                      <a href="demo-hotel-and-resort-room-details.html">
+                        <div class="submenu-icon-content">
+                          <span>Greece</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="demo-hotel-and-resort-amenities.html"
+                    class="nav-link"
+                    >Featured Itineraries</a
+                  >
+                </li>
+              </ul>
+              <ul class="navbar-nav navbar-right justify-content-start">
+                <li class="nav-item">
+                  <a href="demo-hotel-and-resort-about-us.html" class="nav-link"
+                    >Founders' Note</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="demo-hotel-and-resort-amenities.html"
+                    class="nav-link"
+                    >Blog</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="demo-hotel-and-resort-contact.html" class="nav-link"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-auto col-xl-2 col-lg-1 text-end">
+            <div class="d-none d-xl-flex align-items-center widget-text fw-600">
+              <i class="bi bi-calendar-check text-base-color me-10px"></i
+              ><a href="demo-hotel-and-resort-contact.html"
+                >Plan My Dream Trip</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- end header -->
+    <!-- start banner slider -->
+    <section
+      class="p-0 top-space-margin full-screen md-h-600px sm-h-500px border-top border-4 border-color-base-color position-relative"
+      data-parallax-background-ratio="0.3"
+      style="background-image: url('https://placehold.co/1920x1100')"
+    >
+      <div class="opacity-light bg-black"></div>
+      <div class="container h-100 position-relative">
+        <div class="row align-items-center h-100 justify-content-center">
+          <div
+            class="col-md-10 position-relative text-white d-flex flex-column justify-content-center text-center h-100"
+            data-anime='{ "el": "childs", "translateY": [-15, 0], "perspective": [1200,1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 600, "delay": 100, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            <h1
+              class="fs-100 lg-fs-85 md-fs-70 sm-fs-50 xs-fs-40 fw-700 mb-20px ls-minus-8px md-ls-minus-4px xs-ls-minus-2px text-shadow-double-large"
+            >
+              Stress-Free Travel, Designed
+              <div
+                class="highlight-separator"
+                data-shadow-animation="true"
+                data-animation-delay="500"
+              >
+                Personally for You.<span
+                  ><img src="images/highlight-separator.svg" alt=""
+                /></span>
+              </div>
+            </h1>
+            <h5 class="alt-font fw-400 mb-20px text-shadow-double-large">
+              Skip the hours of research and planning, we’ll handle every detail
+              of your custom trip. Our local experts craft personalized
+              itineraries filled with authentic experiences, so you can simply
+              enjoy the journey and travel with confidence.
+            </h5>
+            <div class="mb-30px">
+              <a
+                href="demo-hotel-and-resort-contact.html"
+                class="btn btn-extra-large btn-switch-text bg-base-color fw-700 btn-round-edge btn-box-shadow"
+              >
+                <span>
+                  <span class="btn-double-text" data-text="Plan My Dream Trip"
+                    >Plan My Dream Trip</span
+                  >
+                  <span><i class="fa-solid fa-arrow-right fs-14"></i></span>
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="rating-card">
-      <div class="rating-stars">★★★★★</div>
-      <p class="rating-text">What a great experience. We visited the islands with our family and every single detail had been thought through in advance. The kids are already asking when we go back. Highly recommended — without hesitation.</p>
-      <div class="rating-author">
-        <div class="rating-avatar" style="background:var(--gold);color:var(--navy)">MT</div>
-        <div>
-          <div class="rating-name">Matthew & Tara</div>
-          <div class="rating-trip">Cyclades family trip, 12 days</div>
+    </section>
+    <!-- end banner slider -->
+    <!-- start section -->
+    <section class="bg-very-light-gray half-section ps-6 pe-6">
+      <div class="container-fluid">
+        <div
+          class="row row-cols-1 row-cols-lg-4 row-cols-md-2 justify-content-center"
+          data-anime='{ "el": "childs", "translateX": [-15, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <!-- start features box item -->
+          <div
+            class="col icon-with-text-style-10 border-end border-1 sm-border-end-0 border-color-transparent-base-color md-mb-50px"
+          >
+            <div class="feature-box ps-8 pe-8 xl-ps-5 xl-pe-5">
+              <div
+                class="feature-box-icon feature-box-icon-rounded w-120px h-120px rounded-circle mb-20px"
+              >
+                <i class="text-base-color">
+                  <img src="images/icons/heart-handshake.svg" alt="" />
+                </i>
+              </div>
+              <div class="feature-box-content last-paragraph-no-margin">
+                <span class="alt-font text-dark-gray fs-22 ls-0px">
+                  Meet Your Local Travel Partner
+                </span>
+                <p>
+                  Get matched with a trusted planner who knows your destination
+                  inside out.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- end features box item -->
+          <!-- start features box item -->
+          <div
+            class="col icon-with-text-style-10 border-end border-1 md-border-end-0 border-color-transparent-base-color md-mb-50px"
+          >
+            <div class="feature-box ps-8 pe-8 xl-ps-5 xl-pe-5">
+              <div
+                class="feature-box-icon feature-box-icon-rounded w-120px h-120px rounded-circle mb-20px"
+              >
+                <i class="text-base-color">
+                  <img src="images/icons/messages-square.svg" alt="" />
+                </i>
+              </div>
+              <div class="feature-box-content last-paragraph-no-margin">
+                <span class="alt-font text-dark-gray fs-22 ls-0px">
+                  Tell Us About Your Dream Trip
+                </span>
+                <p>
+                  Share your interests, travel style, and must-see spots. We’ll
+                  shape your ideal journey.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- end features box item -->
+          <!-- start features box item -->
+          <div
+            class="col icon-with-text-style-10 border-end border-1 sm-border-end-0 border-color-transparent-base-color sm-mb-50px"
+          >
+            <div class="feature-box ps-8 pe-8 xl-ps-5 xl-pe-5">
+              <div
+                class="feature-box-icon feature-box-icon-rounded w-120px h-120px rounded-circle mb-20px"
+              >
+                <i class="text-base-color">
+                  <img src="images/icons/island.svg" alt="" />
+                </i>
+              </div>
+              <div class="feature-box-content last-paragraph-no-margin">
+                <span class="alt-font text-dark-gray fs-22 ls-0px">
+                  Relax — We’ve Got It Covered
+                </span>
+                <p>
+                  From logistics to local gems, we handle the details so you can
+                  simply enjoy.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- end features box item -->
         </div>
       </div>
-    </div>
-  </div>
-  <p class="ratings-footer">Join over <strong>3,500+</strong> happy travellers who've explored Greece with us</p>
-</section>
-
-<!-- WHY -->
-<section class="why" id="why">
-  <div class="why-header">
-    <p class="eyebrow">Why Personally Planned Trips</p>
-    <h2>Travel That Feels <em>Effortlessly Yours</em></h2>
-  </div>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-card-img why-c1" style="font-size:2.5rem;color:white">🧭</div>
-      <h3>Designed Around You</h3>
-      <p>Your journey starts with a conversation. Every itinerary is built from scratch — tailored to your style, pace, and passions — never from a template.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-card-img why-c2" style="font-size:2.5rem;color:white">🛋️</div>
-      <h3>Stress-Free Planning</h3>
-      <p>No endless research, no booking headaches. We handle every detail — transport, accommodation, reservations — so you focus only on the excitement of travel.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-card-img why-c3" style="font-size:2.5rem;color:white">🗝️</div>
-      <h3>Beyond the Tourist Trail</h3>
-      <p>Authentic moments and local gems most travellers never find — curated by people who live and breathe Greece, not travel algorithms.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DESTINATIONS -->
-<section class="destinations" id="destinations">
-  <div class="dest-header">
-    <p class="eyebrow">Destinations</p>
-    <h2>Explore Greece, <em>Your Way</em></h2>
-    <p>Hand-crafted itineraries starting with Greece — where every personally planned journey begins.</p>
-  </div>
-  <div class="dest-feature">
-    <div class="dest-visual">
-      <div class="dest-visual-overlay"></div>
-      <div class="dest-visual-pattern"></div>
-      <div class="dest-visual-content">
-        <div class="tag">Now available</div>
-        <h3>Greece</h3>
-        <p>From sun-soaked Cyclades islands to the ruins of the Peloponnese, we design journeys that capture Greece at its most authentic — tailored entirely to you.</p>
-      </div>
-    </div>
-    <div class="dest-info">
-      <h3>Experience Greece Your Way</h3>
-      <p>Whether you dream of waking to a Santorini sunrise, wandering Nafplio's Venetian lanes, sailing between Ionian islands, or hiking the Samariá Gorge — we build a journey that matches your vision, not a catalogue.</p>
-      <ul class="dest-highlights">
-        <li>The Cyclades — Santorini, Mykonos, Milos, Folegandros & beyond</li>
-        <li>The Peloponnese — ancient ruins, Byzantine towns, wild coastline</li>
-        <li>Crete — gorges, palaces, mountain villages and pristine beaches</li>
-        <li>The Ionian Islands — Corfu, Kefalonia, Ithaca by private boat</li>
-        <li>Athens & surrounds — curated city stays, day trips, food culture</li>
-      </ul>
-      <div class="more-dest">
-        <span class="dest-chip">Italy <span style="font-size:.65rem;opacity:.5">— coming soon</span></span>
-        <span class="dest-chip">Croatia <span style="font-size:.65rem;opacity:.5">— coming soon</span></span>
-        <span class="dest-chip">Turkey <span style="font-size:.65rem;opacity:.5">— coming soon</span></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ITINERARIES -->
-<section class="itineraries" id="itineraries">
-  <div class="itin-header">
-    <p class="eyebrow">Featured Itineraries</p>
-    <h2>Journeys Worth <em>Remembering</em></h2>
-  </div>
-  <div class="itin-grid">
-    <div class="itin-card">
-      <div class="itin-img itin-bg1">
-        <div class="itin-overlay"></div>
-        <div class="itin-tag">Most Popular</div>
-        <div class="itin-title-wrap">
-          <div class="itin-days">10 Days</div>
-          <div class="itin-title">Island Hopping — The Cyclades</div>
+    </section>
+    <!-- end section -->
+    <!-- start section -->
+    <section
+      class="background-position-center background-repeat"
+      style="background-image: url('images/vertical-center-line-bg.svg')"
+    >
+      <div class="container">
+        <div class="row align-items-center mb-12 md-mb-17 xs-mb-25">
+          <div
+            class="col-lg-5 md-mb-50px"
+            data-anime='{ "el": "childs", "opacity": [0, 1], "rotateY": [-90, 0], "rotateZ": [-10, 0], "translateY": [80, 0], "translateZ": [50, 0], "staggervalue": 200, "duration": 800, "delay": 200, "easing": "easeOutCirc" }'
+          >
+            <span class="mb-10px text-cornflower-blue fw-500 d-block"
+              >About Personally Travel</span
+            >
+            <h2 class="alt-font text-dark-gray ls-minus-2px">
+              Experience the world, planned personally for you.
+            </h2>
+            <p class="w-80 xl-w-100 mb-35px xs-mb-10px">
+              We create custom travel itineraries that bring your dream trip to
+              life — from the first idea to the final day abroad. Our local
+              experts design every journey around your interests, style, and
+              pace, so you can explore the world effortlessly and meaningfully.
+            </p>
+            <div class="d-inline-block w-100">
+              <a
+                href="demo-hotel-and-resort-about-us.html"
+                class="btn btn-extra-large btn-switch-text bg-secondary-color btn-box-shadow btn-round-edge d-inline-block align-middle me-30px xs-me-10px xs-mt-20px"
+              >
+                <span>
+                  <span class="btn-double-text" data-text="About resort">
+                    About resort
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6 position-relative offset-lg-1">
+            <span
+              class="fs-90 position-absolute left-60px md-left-100px sm-left-70px xs-left-10px top-90px xs-top-50px text-dark-gray fw-700 z-index-1"
+              data-bottom-top="transform: translateY(50px) scale(1,1)"
+              data-top-bottom="transform: translateY(-50px) scale(1,1)"
+              data-anime='{ "opacity": [0,1], "duration": 600, "delay": 1500, "staggervalue": 300, "easing": "easeOutQuad" }'
+              ><span
+                class="fs-15 fw-600 d-table lh-16 text-uppercase text-medium-gray"
+                >Started in</span
+              >1995</span
+            >
+            <div
+              class="w-75 overflow-hidden position-relative xs-w-80 border-radius-4px float-end"
+              data-anime='{ "effect": "slide", "color": "#A0875B", "direction":"rl", "easing": "easeOutQuad", "duration": 600, "delay":400}'
+            >
+              <img class="w-100" src="https://placehold.co/480x575" alt="" />
+            </div>
+            <div
+              class="position-absolute left-minus-70px md-left-15px bottom-minus-50px w-55 overflow-hidden"
+              data-bottom-top="transform: translateY(50px)"
+              data-top-bottom="transform: translateY(-50px)"
+              data-anime='{ "effect": "slide", "color": "#ffffff", "direction":"lr", "easing": "easeOutQuad", "duration": 600, "delay":500}'
+            >
+              <img
+                class="w-100 border-radius-4px"
+                src="https://placehold.co/375x375"
+                alt=""
+              />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="itin-body">
-        <p class="itin-desc">Santorini, Milos, Folegandros and Naxos — four islands, four completely different characters, one seamless journey designed around you.</p>
-        <div class="itin-meta">
-          <div class="itin-price">From €3,200 <span>/ person</span></div>
-          <a href="#contact" class="itin-btn">Enquire →</a>
+      <div class="container-fluid">
+        <div class="row position-relative">
+          <div
+            class="col swiper swiper-width-auto feather-shadow text-cente"
+            data-slider-options='{ "slidesPerView": "auto", "spaceBetween":0, "centeredSlides": true, "speed": 10000, "loop": true, "pagination": { "el": ".slider-four-slide-pagination-2", "clickable": false }, "allowTouchMove": false, "autoplay": { "delay":1, "disableOnInteraction": false }, "navigation": { "nextEl": ".slider-four-slide-next-2", "prevEl": ".slider-four-slide-prev-2" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'
+          >
+            <div class="swiper-wrapper marquee-slide">
+              <!-- start client item -->
+              <div class="swiper-slide">
+                <div
+                  class="fs-28 sm-fs-22 alt-font ls-minus-05px text-dark-gray"
+                >
+                  <span
+                    class="w-10px h-10px border border-radius-100 border-color-base-color d-inline-block ms-50px me-50px md-ms-30px md-me-30px"
+                  ></span>
+                  Handcrafted by local experts
+                </div>
+              </div>
+              <!-- end client item -->
+              <!-- start client item -->
+              <div class="swiper-slide">
+                <div
+                  class="fs-28 sm-fs-22 alt-font ls-minus-05px text-dark-gray"
+                >
+                  <span
+                    class="w-10px h-10px border border-radius-100 border-color-base-color d-inline-block ms-50px me-50px md-ms-30px md-me-30px"
+                  ></span>
+                  Loved by travelers worldwide
+                </div>
+              </div>
+              <!-- end client item -->
+              <!-- start client item -->
+              <div class="swiper-slide">
+                <div
+                  class="fs-28 sm-fs-22 alt-font ls-minus-05px text-dark-gray"
+                >
+                  <span
+                    class="w-10px h-10px border border-radius-100 border-color-base-color d-inline-block ms-50px me-50px md-ms-30px md-me-30px"
+                  ></span>
+                  Tailored with care
+                </div>
+              </div>
+              <!-- end client item -->
+              <!-- start client item -->
+              <div class="swiper-slide">
+                <div
+                  class="fs-28 sm-fs-22 alt-font ls-minus-05px text-dark-gray"
+                >
+                  <span
+                    class="w-10px h-10px border border-radius-100 border-color-base-color d-inline-block ms-50px me-50px md-ms-30px md-me-30px"
+                  ></span>
+                  Sustainable and meaningful ecosystem of hospitality
+                </div>
+              </div>
+              <!-- end client item -->
+              <!-- start client item -->
+              <div class="swiper-slide">
+                <div
+                  class="fs-28 sm-fs-22 alt-font ls-minus-05px text-dark-gray"
+                >
+                  <span
+                    class="w-10px h-10px border border-radius-100 border-color-base-color d-inline-block ms-50px me-50px md-ms-30px md-me-30px"
+                  ></span
+                  >Our hotel has been present for over 20 years
+                </div>
+              </div>
+              <!-- end client item -->
+              <!-- start client item -->
+              <div class="swiper-slide">
+                <div
+                  class="fs-28 sm-fs-22 alt-font ls-minus-05px text-dark-gray"
+                >
+                  <span
+                    class="w-10px h-10px border border-radius-100 border-color-base-color d-inline-block ms-50px me-50px md-ms-30px md-me-30px"
+                  ></span
+                  >We make the best for all our customers
+                </div>
+              </div>
+              <!-- end client item -->
+              <!-- start client item -->
+              <div class="swiper-slide">
+                <div
+                  class="fs-28 sm-fs-22 alt-font ls-minus-05px text-dark-gray"
+                >
+                  <span
+                    class="w-10px h-10px border border-radius-100 border-color-base-color d-inline-block ms-50px me-50px md-ms-30px md-me-30px"
+                  ></span
+                  >The resort is built in and around an 18 acres
+                </div>
+              </div>
+              <!-- end client item -->
+              <!-- start client item -->
+              <div class="swiper-slide">
+                <div
+                  class="fs-28 sm-fs-22 alt-font ls-minus-05px text-dark-gray"
+                >
+                  <span
+                    class="w-10px h-10px border border-radius-100 border-color-base-color d-inline-block ms-50px me-50px md-ms-30px md-me-30px"
+                  ></span
+                  >Sustainable and meaningful ecosystem of hospitality
+                </div>
+              </div>
+              <!-- end client item -->
+              <!-- end client item -->
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="itin-card">
-      <div class="itin-img itin-bg2">
-        <div class="itin-overlay"></div>
-        <div class="itin-tag">Romantic</div>
-        <div class="itin-title-wrap">
-          <div class="itin-days">8 Days</div>
-          <div class="itin-title">Honeymoon in Greece</div>
+    </section>
+    <!-- end section -->
+    <!-- start section -->
+    <section
+      class="background-position-center background-repeat overlap-height position-relative"
+      style="background-image: url('images/vertical-center-line-bg.svg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center mb-5 xs-mb-7">
+          <div
+            class="col-md-8 text-center"
+            data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            <h2 class="alt-font mb-5px text-dark-gray ls-minus-2px">
+              Exclusive ratings
+            </h2>
+            <span class="d-inline-block"
+              >Enjoy in resorts and awesome ratings.</span
+            >
+          </div>
+        </div>
+        <div
+          class="row row-cols-1 row-cols-xl-2 row-cols-lg-2 row-cols-md-1 position-relative justify-content-center mb-4 sm-mb-30px"
+          data-anime='{ "el": "childs", "perspective": [800, 1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 900, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <!-- start review item -->
+          <div class="col review-style-05 md-mb-30px">
+            <div
+              class="border-radius-6px bg-white box-shadow-quadruple-large border border-color-extra-medium-gray last-paragraph-no-margin"
+            >
+              <div
+                class="d-flex align-items-center ps-45px pe-45px pt-30px pb-30px lg-p-25px"
+              >
+                <img
+                  class="rounded-circle w-120px xs-w-80px me-25px"
+                  src="https://placehold.co/200x200"
+                  alt=""
+                />
+                <p>
+                  We are happy to offer our guests truly fabulous experience of
+                  relaxing, balanced, and memorable vacation.
+                </p>
+              </div>
+              <div
+                class="border-top border-color-extra-medium-gray pt-15px pb-15px ps-45px pe-45px lg-ps-25px lg-pe-25px text-center text-sm-start"
+              >
+                <span
+                  class="alt-font fw-500 text-dark-gray d-inline-block xs-fs-17"
+                  >Herman Miller, ThemeZaa</span
+                >
+                <div class="review-star-icon float-sm-end float-none fs-19">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                  ><i class="bi bi-star-fill"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end review item -->
+          <!-- start review item -->
+          <div class="col review-style-05">
+            <div
+              class="border-radius-6px bg-white box-shadow-quadruple-large border border-color-extra-medium-gray last-paragraph-no-margin"
+            >
+              <div
+                class="d-flex align-items-center ps-45px pe-45px pt-30px pb-30px lg-p-25px"
+              >
+                <img
+                  class="rounded-circle w-120px xs-w-80px me-25px"
+                  src="https://placehold.co/200x200"
+                  alt=""
+                />
+                <p>
+                  What a great experience! I have visited one of the resorts
+                  with my friends and we had a great time! Highly recommended.
+                </p>
+              </div>
+              <div
+                class="border-top border-color-extra-medium-gray pt-15px pb-15px ps-45px pe-45px lg-ps-25px lg-pe-25px text-center text-sm-start"
+              >
+                <span
+                  class="alt-font fw-500 text-dark-gray d-inline-block xs-fs-17"
+                  >Matthew Taylor, ThemeZaa</span
+                >
+                <div class="review-star-icon float-sm-end float-none fs-19">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                  ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                  ><i class="bi bi-star-fill"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end review item -->
+        </div>
+        <div class="row mb-3 sm-mb-0">
+          <div
+            class="col-12 text-center"
+            data-anime='{ "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+          >
+            <div
+              class="text-dark-gray fw-500 mb-0 d-inline-block align-middle fs-24"
+            >
+              Check all <strong>3,583</strong> exclusive visitor reviews on<a
+                href="#"
+                class="d-inline-block align-middle ms-10px"
+                ><img
+                  src="images/demo-hotel-and-resort-client-01.svg"
+                  class="h-60px"
+                  alt=""
+              /></a>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="itin-body">
-        <p class="itin-desc">Private cave suites, sunset dinner reservations, a day trip by catamaran — every detail chosen to make your first trip as a couple unforgettable.</p>
-        <div class="itin-meta">
-          <div class="itin-price">From €4,800 <span>/ couple</span></div>
-          <a href="#contact" class="itin-btn">Enquire →</a>
+    </section>
+    <!-- end section -->
+    <!-- start section -->
+    <section
+      class="background-position-center background-repeat"
+      style="background-image: url('images/vertical-center-line-bg.svg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center mb-6 xs-mb-9">
+          <div
+            class="col-md-8 text-center"
+            data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            <h2 class="alt-font mb-5px text-dark-gray ls-minus-2px">
+              Why Travelers Love Personally Planned Trips
+            </h2>
+            <span class="d-inline-block"
+              >Every journey should feel effortless, meaningful, and uniquely
+              yours. Here’s what sets us apart.</span
+            >
+          </div>
+        </div>
+        <div
+          class="row row-cols-1 row-cols-lg-3 row-cols-md-2 justify-content-center mb-5 xs-mb-8"
+        >
+          <!-- start fancy text box item -->
+          <div
+            class="col"
+            data-bottom-top="transform: translateY(40px)"
+            data-top-bottom="transform: translateY(-40px)"
+          >
+            <div class="services-box-style-01 hover-box md-mb-30px">
+              <div class="position-relative box-image border-radius-6px">
+                <img class="w-100" src="https://placehold.co/377x377" alt="" />
+              </div>
+              <div class="p-30px last-paragraph-no-margin text-center">
+                <span
+                  class="d-inline-block fs-22 alt-font ls-minus-05px text-dark-gray"
+                  >Trips Designed Around You</span
+                >
+                <p>
+                  Your journey starts with you. Every itinerary is built from
+                  scratch — tailored to your style, pace, and passions.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- end fancy text box item -->
+          <!-- start fancy text box item -->
+          <div
+            class="col"
+            data-bottom-top="transform: translateY(-40px)"
+            data-top-bottom="transform: translateY(40px)"
+          >
+            <div class="services-box-style-01 hover-box md-mb-30px">
+              <div class="position-relative box-image border-radius-6px">
+                <img class="w-100" src="https://placehold.co/377x377" alt="" />
+              </div>
+              <div class="p-30px last-paragraph-no-margin text-center">
+                <span
+                  class="d-inline-block fs-22 alt-font ls-minus-05px text-dark-gray"
+                  >Stress-Free Planning</span
+                >
+                <p>
+                  No endless research, no booking headaches. We handle every
+                  detail so you can focus on the excitement of travel.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- end fancy text box item -->
+          <!-- start fancy text box item -->
+          <div
+            class="col"
+            data-bottom-top="transform: translateY(40px)"
+            data-top-bottom="transform: translateY(-40px)"
+          >
+            <div class="services-box-style-01 hover-box">
+              <div class="position-relative box-image border-radius-6px">
+                <img class="w-100" src="https://placehold.co/377x377" alt="" />
+              </div>
+              <div class="p-30px last-paragraph-no-margin text-center">
+                <span
+                  class="d-inline-block fs-22 alt-font ls-minus-05px text-dark-gray"
+                  >Beyond the Tourist Trail</span
+                >
+                <p>
+                  Experience authentic moments and local gems most travelers
+                  never find — curated by people who truly know the destination.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- end fancy text box item -->
+        </div>
+        <div
+          class="row row-cols-1 row-cols-md-4 row-cols-sm-2 text-center justify-content-center clients-style-05"
+          data-anime='{ "el": "childs", "opacity": [0,1], "duration": 500, "delay": 0, "staggervalue": 200, "easing": "easeOutQuad" }'
+        >
+          <!-- start client item -->
+          <div class="col sm-mb-30px">
+            <div class="client-box">
+              <a href="#"
+                ><img
+                  src="images/demo-hotel-and-resort-client-01.svg"
+                  class="h-55px"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+          <!-- end client item -->
+          <!-- start client item -->
+          <div class="col sm-mb-30px">
+            <div class="client-box">
+              <a href="#"
+                ><img
+                  src="images/demo-hotel-and-resort-client-02.svg"
+                  class="h-55px"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+          <!-- end client item -->
+          <!-- start client item -->
+          <div class="col xs-mb-30px">
+            <div class="client-box">
+              <a href="#"
+                ><img
+                  src="images/demo-hotel-and-resort-client-03.svg"
+                  class="h-55px"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+          <!-- end client item -->
+          <!-- start client item -->
+          <div class="col">
+            <div class="client-box">
+              <a href="#"
+                ><img
+                  src="images/demo-hotel-and-resort-client-04.svg"
+                  class="h-55px"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+          <!-- end client item -->
         </div>
       </div>
-    </div>
-    <div class="itin-card">
-      <div class="itin-img itin-bg3">
-        <div class="itin-overlay"></div>
-        <div class="itin-tag">Culture & History</div>
-        <div class="itin-title-wrap">
-          <div class="itin-days">12 Days</div>
-          <div class="itin-title">Ancient Greece — Athens to Crete</div>
+    </section>
+    <!-- end section -->
+    <!-- start section -->
+    <section
+      class="bg-very-light-gray overlap-height position-relative background-position-center background-repeat"
+      style="background-image: url('images/vertical-center-line-bg-dark.svg')"
+    >
+      <div class="container overlap-gap-section">
+        <div class="row justify-content-center mb-5 xs-mb-7">
+          <div
+            class="col-md-8 text-center"
+            data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            <h2 class="alt-font mb-5px text-dark-gray ls-minus-2px">
+              Destinations
+            </h2>
+            <span class="d-inline-block">
+              Explore our hand-crafted itineraries, starting with Greece — where
+              your personally planned journey begins.
+            </span>
+          </div>
+        </div>
+        <div
+          class="row row-cols-1 row-cols-lg-3 row-cols-md-2 justify-content-center"
+          data-anime='{ "el": "childs", "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <!-- start rotate box item -->
+          <div
+            class="col text-center rotate-box-style-01 lg-mb-45px"
+            data-bottom-top="transform: translateY(80px)"
+            data-top-bottom="transform: translateY(-80px)"
+          >
+            <div class="rm-rotate-box text-center">
+              <div class="flipper to-left">
+                <div class="thumb-wrap">
+                  <div
+                    class="front overflow-hidden h-250px md-h-250px border-radius-4px overflow-hidden"
+                    style="
+                      background-image: url('images/beautiful-view-oia-santorini-lit-up-ocean-background.jpg');
+                    "
+                  ></div>
+                  <div class="back border-radius-4px overflow-hidden">
+                    <div class="box-overlay bg-secondary-color"></div>
+                    <div
+                      class="content-wrap p-40px xs-p-30px last-paragraph-no-margin"
+                    >
+                      <h4 class="align-middle text-white mb-20px">
+                        Experience Greece your way.
+                      </h4>
+                      <p
+                        class="text-white opacity-7 lh-30 sm-w-70 xs-w-100 mx-auto"
+                      >
+                        From sun-soaked islands to ancient ruins, we’ll design a
+                        custom itinerary that captures the best of Greece —
+                        tailored to your style and pace.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <span
+                  class="fs-20 d-inline-block mt-30px fw-600 text-dark-gray"
+                >
+                  Greece
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- end rotate box item -->
         </div>
       </div>
-      <div class="itin-body">
-        <p class="itin-desc">Walk the Acropolis at golden hour, sleep in a restored manor in the Mani, and explore Minoan ruins — a journey through 4,000 years of civilisation.</p>
-        <div class="itin-meta">
-          <div class="itin-price">From €2,900 <span>/ person</span></div>
-          <a href="#contact" class="itin-btn">Enquire →</a>
+    </section>
+    <!-- end section -->
+    <!-- start section -->
+    <section
+      class="background-position-center background-repeat"
+      style="background-image: url('images/vertical-center-line-bg.svg')"
+    >
+      <div class="container overlap-section">
+        <div
+          class="row bg-white box-shadow-extra-large border-radius-6px ps-5 pe-5 pt-3 pb-3 g-0 sm-p-6 sm-ps-19 align-items-center mb-8 overflow-hidden position-relative"
+        >
+          <div class="col-lg-2 col-md-3 text-center sm-mb-25px">
+            <img src="https://placehold.co/89x107" alt="" />
+          </div>
+          <div class="col-md-6 text-center text-md-start sm-mb-25px">
+            <div class="fs-26 alt-font fw-500 text-dark-gray ls-minus-05px">
+              “Every trip should feel personal — and every traveler should feel
+              <span class="text-decoration-line-bottom fw-600">
+                taken care of.
+              </span>
+              ”
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-3 text-center">
+            <img
+              class="md-w-85 sm-w-auto"
+              src="images/demo-hotel-and-resort-home-10.png"
+              alt=""
+            />
+          </div>
+          <div
+            class="vertical-title-center align-items-center position-absolute top-0px left-0px bg-secondary-color p-10px w-50px h-100 w-10px z-index-9"
+          >
+            <div class="title fs-15 ls-1px text-white fw-600 text-uppercase">
+              Testimonial
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="container">
+        <div class="row justify-content-center mb-5 xs-mb-7">
+          <div
+            class="col-md-8 text-center"
+            data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            <h2 class="alt-font mb-5px text-dark-gray ls-minus-2px">
+              Featured Itineraries
+            </h2>
+            <span class="d-inline-block"> </span>
+          </div>
+        </div>
+        <div
+          class="row row-cols-1 row-cols-lg-3 row-cols-md-2 justify-content-center mb-9"
+          data-anime='{ "el": "childs", "translateY": [-30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <!-- start interactive banner item -->
+          <div class="col interactive-banner-style-07 md-mb-30px xs-mb-15px">
+            <figure
+              class="mb-0 border-radius-6px overflow-hidden box-shadow-quadruple-large-hover box-shadow-quadruple-large"
+            >
+              <img src="https://placehold.co/600x700" alt="" />
+              <div class="overlay-bg bg-dark-gray opacity-extra-medium"></div>
+              <figcaption>
+                <div
+                  class="hover-content align-items-center d-flex flex-column justify-content-center h-100 p-50px text-center"
+                >
+                  <div class="w-65 lg-w-90 mt-auto mb-auto">
+                    <span class="fs-14 fw-500 ls-2px text-white text-uppercase"
+                      >Exclusive</span
+                    >
+                    <div
+                      class="divider-style-03 divider-style-03-01 border-color-transparent-white-very-light pt-15px mt-10px"
+                    ></div>
+                    <h6 class="alt-font text-white mb-0">
+                      Honeymoon<br />package
+                    </h6>
+                  </div>
+                  <div class="hover-show-content text-center">
+                    <a
+                      href="index.html"
+                      class="bg-base-color w-55px h-55px rounded-circle position-relative mx-auto d-block"
+                    >
+                      <i
+                        class="bi bi-arrow-right-short icon-extra-medium absolute-middle-center text-white"
+                      ></i>
+                    </a>
+                  </div>
+                  <div class="hover-hide-content">
+                    <span
+                      class="fs-13 lh-34 text-dark-gray text-uppercase bg-white ps-20px pe-20px d-inline-block border-radius-4px fw-700"
+                      >Get 40% off</span
+                    >
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <!-- end interactive banner item -->
+          <!-- start interactive banner item -->
+          <div class="col interactive-banner-style-07 md-mb-30px xs-mb-15px">
+            <figure
+              class="mb-0 border-radius-6px overflow-hidden box-shadow-quadruple-large-hover box-shadow-quadruple-large"
+            >
+              <img src="https://placehold.co/600x700" alt="" />
+              <div class="overlay-bg bg-dark-gray opacity-extra-medium"></div>
+              <figcaption>
+                <div
+                  class="hover-content align-items-center d-flex flex-column justify-content-center h-100 p-60px text-center"
+                >
+                  <div class="w-65 lg-w-90 mt-auto mb-auto">
+                    <span class="fs-14 fw-500 ls-2px text-white text-uppercase"
+                      >Unbundled</span
+                    >
+                    <div
+                      class="divider-style-03 divider-style-03-01 border-color-transparent-white-very-light pt-15px mt-10px"
+                    ></div>
+                    <h6 class="alt-font text-white mb-0">
+                      Cocktail<br />package
+                    </h6>
+                  </div>
+                  <div class="hover-show-content text-center">
+                    <a
+                      href="demo-hotel-and-resort-amenities.html"
+                      class="bg-base-color w-55px h-55px rounded-circle position-relative mx-auto d-block"
+                    >
+                      <i
+                        class="bi bi-arrow-right-short icon-extra-medium absolute-middle-center text-white"
+                      ></i>
+                    </a>
+                  </div>
+                  <div class="hover-hide-content">
+                    <span
+                      class="fs-13 lh-34 text-dark-gray text-uppercase bg-white ps-20px pe-20px d-inline-block border-radius-4px fw-700"
+                      >Get 30% off</span
+                    >
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <!-- end interactive banner item -->
+          <!-- start interactive banner item -->
+          <div class="col interactive-banner-style-07">
+            <figure
+              class="mb-0 border-radius-6px overflow-hidden box-shadow-quadruple-large-hover box-shadow-quadruple-large"
+            >
+              <img src="https://placehold.co/600x700" alt="" />
+              <div class="overlay-bg bg-dark-gray opacity-extra-medium"></div>
+              <figcaption>
+                <div
+                  class="hover-content align-items-center d-flex flex-column justify-content-center h-100 p-60px text-center"
+                >
+                  <div class="w-65 lg-w-90 mt-auto mb-auto">
+                    <span class="fs-14 fw-500 ls-2px text-white text-uppercase"
+                      >Wellness</span
+                    >
+                    <div
+                      class="divider-style-03 divider-style-03-01 border-color-transparent-white-very-light pt-15px mt-10px"
+                    ></div>
+                    <h6 class="alt-font text-white mb-0">
+                      Massage<br />package
+                    </h6>
+                  </div>
+                  <div class="hover-show-content text-center">
+                    <a
+                      href="demo-hotel-and-resort-bistro.html"
+                      class="bg-base-color w-55px h-55px rounded-circle position-relative mx-auto d-block"
+                    >
+                      <i
+                        class="bi bi-arrow-right-short icon-extra-medium absolute-middle-center text-white"
+                      ></i>
+                    </a>
+                  </div>
+                  <div class="hover-hide-content">
+                    <span
+                      class="fs-13 lh-34 text-dark-gray text-uppercase bg-white ps-20px pe-20px d-inline-block border-radius-4px fw-700"
+                      >Get 20% off</span
+                    >
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <!-- end interactive banner item -->
+        </div>
+        <div class="fi-trustbar" aria-label="What’s included">
+          <div class="fi-badge">
+            <span class="fi-icon" aria-hidden="true">
+              <svg
+                class="fi-svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M15 9l-3 6-3-3 6-3z"></path>
+              </svg>
+            </span>
+            <span class="fi-badge-text">Tailor-made plan</span>
+          </div>
 
-<!-- PERKS STRIP -->
-<div class="perks">
-  <div class="perks-list">
-    <span class="perk">Tailor-made plan</span>
-    <span class="perk">Stress-free logistics</span>
-    <span class="perk">Local insider access</span>
-    <span class="perk">24/7 travel support</span>
-    <span class="perk">No hidden fees</span>
-  </div>
-</div>
+          <div class="fi-badge">
+            <span class="fi-icon" aria-hidden="true">
+              <svg
+                class="fi-svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                <path d="M16 2v4M8 2v4M3 10h18"></path>
+                <path d="M9 16l2 2 4-4"></path>
+              </svg>
+            </span>
+            <span class="fi-badge-text">Stress-free logistics</span>
+          </div>
 
-<!-- NEWSLETTER -->
-<section class="newsletter" id="contact">
-  <p class="eyebrow">Stay in the Loop</p>
-  <h2>Great Offers, Straight to Your Inbox</h2>
-  <p>New itineraries, seasonal deals, and travel inspiration from Greece — delivered occasionally, never spammy.</p>
-  <div class="newsletter-form">
-    <input type="email" placeholder="your@email.com">
-    <button onclick="this.textContent='✓ Subscribed!'">Subscribe</button>
-  </div>
-  <p class="newsletter-privacy">We're committed to protecting your privacy. Unsubscribe any time.</p>
-</section>
-
-<!-- INSTAGRAM -->
-<section class="instagram">
-  <p class="eyebrow">Follow Along</p>
-  <h2>Greece Through Our Eyes</h2>
-  <p>Real moments from real journeys — follow us for inspiration</p>
-  <div class="ig-grid">
-    <div class="ig-tile"><div class="ig-tile-inner ig-c1"></div></div>
-    <div class="ig-tile"><div class="ig-tile-inner ig-c2"></div></div>
-    <div class="ig-tile"><div class="ig-tile-inner ig-c3"></div></div>
-    <div class="ig-tile"><div class="ig-tile-inner ig-c4"></div></div>
-    <div class="ig-tile"><div class="ig-tile-inner ig-c5"></div></div>
-  </div>
-  <a href="https://www.instagram.com" target="_blank" class="ig-handle">@personally.greece →</a>
-</section>
-
-<!-- FOUNDERS NOTE -->
-<section style="background:var(--linen);padding:5rem 5%;text-align:center" id="founders">
-  <p style="font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--aegean);margin-bottom:.8rem">The Founders' Note</p>
-  <blockquote style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--navy);font-style:italic;font-weight:400;max-width:760px;margin:0 auto 1.5rem;line-height:1.5">"Every trip should feel personal — and every traveller should feel genuinely cared for."</blockquote>
-  <div style="width:36px;height:2px;background:var(--gold);margin:.5rem auto 1.2rem"></div>
-  <p style="font-size:.85rem;color:var(--muted)">— The Personally Greece Team</p>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-brand">Personally <span>Greece</span></div>
-      <div class="footer-tagline">Your Greece. Your story.</div>
-      <div class="footer-divider"></div>
-      <p class="footer-desc">Bespoke travel itineraries crafted by local experts who live, breathe, and love Greece. Designed entirely around you.</p>
+          <div class="fi-badge">
+            <span class="fi-icon" aria-hidden="true">
+              <svg
+                class="fi-svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M12 21s-6-4.35-6-10a6 6 0 1 1 12 0c0 5.65-6 10-6 10z"
+                ></path>
+                <path d="M9.5 10.5l1.25 1.25L14.5 8"></path>
+              </svg>
+            </span>
+            <span class="fi-badge-text">Local insights</span>
+          </div>
+          <div class="fi-badge">
+            <span class="fi-icon" aria-hidden="true">
+              <!-- Option A: Headset icon -->
+              <svg
+                class="fi-svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path d="M4 15v-3a8 8 0 0 1 16 0v3"></path>
+                <path d="M18 19a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2"></path>
+                <path d="M22 17a2 2 0 0 1-2 2h-1v-4h1a2 2 0 0 1 2 2z"></path>
+                <path d="M2 17a2 2 0 0 0 2 2h1v-4H4a2 2 0 0 0-2 2z"></path>
+              </svg>
+            </span>
+            <span class="fi-badge-text">24/7 travel support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end section -->
+    <!-- start footer -->
+    <footer
+      class="bg-very-light-gray pb-50px sm-pt-20px xs-pb-30px background-repeat background-position-center sm-background-image-none"
+      style="background-image: url('images/vertical-center-line-bg-dark.svg')"
+    >
+      <div class="container">
+        <div class="row overlap-section">
+          <div class="col-12 text-center">
+            <img
+              class="rounded-circle"
+              src="https://placehold.co/171x171"
+              alt=""
+            />
+          </div>
+        </div>
+        <!-- start subscribe item -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-xl-6 col-lg-8 col-md-10 text-center">
+            <h3
+              class="text-dark-gray alt-font ls-minus-2px fw-400 mb-40px xs-mb-30px w-80 xs-w-100 mx-auto"
+            >
+              Get the amazing offers into your inbox!
+            </h3>
+            <div
+              class="d-inline-block w-100 newsletter-style-03 position-relative mb-20px"
+            >
+              <form
+                action="email-templates/subscribe-newsletter.php"
+                method="post"
+                class="position-relative w-100"
+              >
+                <input
+                  class="input-large bg-white border-color-transparent w-100 border-radius-100px box-shadow-extra-large form-control required"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email address"
+                />
+                <input type="hidden" name="redirect" value="" />
+                <button
+                  class="btn btn-large text-dark-gray ls-0px left-icon submit text-uppercase fw-700"
+                  aria-label="submit"
+                >
+                  <i
+                    class="icon feather icon-feather-mail icon-small text-base-color"
+                  ></i
+                  ><span>Subscribe</span>
+                </button>
+                <div
+                  class="form-results border-radius-100px pt-10px pb-10px ps-15px pe-15px fs-16 mt-10px w-100 text-center position-absolute d-none"
+                ></div>
+              </form>
+            </div>
+            <p class="fs-16">
+              We are committed to protecting your
+              <a href="#" class="text-decoration-line-bottom text-dark-gray"
+                >privacy policy.</a
+              >
+            </p>
+          </div>
+        </div>
+        <!-- end subscribe item -->
+        <!-- start instagram -->
+        <div
+          class="row row-cols-3 row-cols-lg-5 row-cols-sm-3 align-items-center justify-content-center mb-4 md-mb-50px xs-mb-40px instagram-follow-api position-relative"
+        >
+          <div class="col instafeed-grid md-mb-30px xs-mb-15px">
+            <figure class="border-radius-0px">
+              <a href="https://www.instagram.com" target="_blank"
+                ><img
+                  src="https://placehold.co/600x600"
+                  class="insta-image"
+                  alt="" /><span class="insta-icon"
+                  ><i class="fa-brands fa-instagram"></i></span
+              ></a>
+            </figure>
+          </div>
+          <div class="col instafeed-grid md-mb-30px xs-mb-15px">
+            <figure class="border-radius-0px">
+              <a href="https://www.instagram.com" target="_blank"
+                ><img
+                  src="https://placehold.co/600x600"
+                  class="insta-image"
+                  alt="" /><span class="insta-icon"
+                  ><i class="fa-brands fa-instagram"></i></span
+              ></a>
+            </figure>
+          </div>
+          <div class="col instafeed-grid md-mb-30px xs-mb-15px">
+            <figure class="border-radius-0px">
+              <a href="https://www.instagram.com" target="_blank"
+                ><img
+                  src="https://placehold.co/600x600"
+                  class="insta-image"
+                  alt="" /><span class="insta-icon"
+                  ><i class="fa-brands fa-instagram"></i></span
+              ></a>
+            </figure>
+          </div>
+          <div class="col instafeed-grid">
+            <figure class="border-radius-0px">
+              <a href="https://www.instagram.com" target="_blank"
+                ><img
+                  src="https://placehold.co/600x600"
+                  class="insta-image"
+                  alt="" /><span class="insta-icon"
+                  ><i class="fa-brands fa-instagram"></i></span
+              ></a>
+            </figure>
+          </div>
+          <div class="col instafeed-grid">
+            <figure class="border-radius-0px">
+              <a href="https://www.instagram.com" target="_blank"
+                ><img
+                  src="https://placehold.co/600x600"
+                  class="insta-image"
+                  alt="" /><span class="insta-icon"
+                  ><i class="fa-brands fa-instagram"></i></span
+              ></a>
+            </figure>
+          </div>
+          <div class="absolute-middle-center z-index-1 w-auto">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              class="btn btn-large btn-switch-text btn-white btn-rounded left-icon btn-box-shadow instagram-button"
+            >
+              <span>
+                <span
+                  ><i class="fa-brands fa-instagram text-base-color"></i
+                ></span>
+                <span class="btn-double-text" data-text="Follow crafto"
+                  >Follow crafto</span
+                >
+              </span>
+            </a>
+          </div>
+        </div>
+        <!-- end instagram -->
+        <div class="row align-items-center">
+          <div
+            class="col-xl-3 col-sm-6 text-center text-sm-start last-paragraph-no-margin fs-15 order-3 order-md-1"
+          >
+            <p>
+              &COPY; Copyright 2025
+              <a
+                href="index.html"
+                target="_blank"
+                class="text-decoration-line-bottom text-dark-gray fw-500"
+                >Personally Travel</a
+              >
+            </p>
+          </div>
+          <div
+            class="col-xl-6 text-center lg-mt-10px sm-mt-0 sm-mb-10px order-1 order-xl-2 order-md-3"
+          >
+            <ul class="footer-navbar fs-17 fw-600">
+              <li class="nav-item active">
+                <a href="index.html" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="destinations.html" class="nav-link">Destinations</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html" class="nav-link">Rooms</a>
+              </li>
+              <li class="nav-item">
+                <a href="demo-hotel-and-resort-amenities.html" class="nav-link"
+                  >Amenities</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="demo-hotel-and-resort-bistro.html" class="nav-link"
+                  >Bistro</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="demo-hotel-and-resort-contact.html" class="nav-link"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div
+            class="col-xl-3 col-sm-6 position-relative text-center text-sm-end elements-social social-text-style-01 order-2 order-xl-3 xs-mb-10px"
+          >
+            <ul class="fs-16 dark fw-600">
+              <li>
+                <a
+                  class="facebook"
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  >Fb.</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dribbble"
+                  href="http://www.dribbble.com"
+                  target="_blank"
+                  >Dr.</a
+                >
+              </li>
+              <li>
+                <a class="twitter" href="http://www.twitter.com" target="_blank"
+                  >Tw.</a
+                >
+              </li>
+              <li>
+                <a
+                  class="behance"
+                  href="http://www.behance.com/"
+                  target="_blank"
+                  >Be.</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- end footer -->
+    <!-- start scroll progress -->
+    <div class="scroll-progress d-none d-xxl-block">
+      <a href="#" class="scroll-top" aria-label="scroll">
+        <span class="scroll-text">Scroll</span
+        ><span class="scroll-line"><span class="scroll-point"></span></span>
+      </a>
     </div>
-    <div class="footer-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#destinations">Destinations</a></li>
-        <li><a href="#itineraries">Itineraries</a></li>
-        <li><a href="#founders">Founders' Note</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Plan</h4>
-      <ul>
-        <li><a href="#contact">Start Planning</a></li>
-        <li><a href="#contact">Custom Itineraries</a></li>
-        <li><a href="#contact">Honeymoons</a></li>
-        <li><a href="#contact">Family Trips</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:hello@personallygreece.travel">hello@personallygreece.travel</a></li>
-        <li><a href="#">+30 210 000 0000</a></li>
-        <li><a href="#">Athens, Greece</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Personally Greece. All rights reserved.</p>
-    <div class="footer-socials">
-      <a href="https://www.instagram.com">Instagram</a>
-      <a href="https://www.facebook.com">Facebook</a>
-      <a href="https://www.twitter.com">X / Twitter</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
-</script>
-</body>
+    <!-- end scroll progress -->
+    <!-- javascript libraries -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/vendors.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
 </html>

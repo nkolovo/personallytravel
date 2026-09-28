@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Personally Travel — Your Mediterranean, planned by someone who's been</title>
+<meta name="description" content="Bespoke Mediterranean itineraries written from scratch by local planners across Greece, Italy, Spain, Croatia and Portugal."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:opsz,wght@9..40,300..700&family=Caveat:wght@500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* ── Sun-Warmed Mediterranean ──
+     Limewash + ink carry the trust; terracotta + saffron carry the excitement;
+     olive grounds it; Aegean is a rare accent, never the lead. */
+  --limewash:    #FBF7F0;
+  --sand:        #F3E9D8;
+  --sand-2:      #E8D9BF;
+  --ink:         #1D2430;
+  --ink-soft:    #464C57;
+  --muted:       #7A7166;
+  --terracotta:  #C94A1F;
+  --terracotta-bright:#E2622F;
+  --terracotta-dk:#A83A14;
+  --saffron:     #F2AE3A;
+  --saffron-lt:  #FBE3B0;
+  --olive:       #56633A;
+  --olive-dk:    #3E4829;
+  --olive-lt:    #E3E6CF;
+  --aegean:      #1F6E8C;
+  --white:       #FFFFFF;
+  --line:        rgba(29,36,48,.1);
+  --radius:      20px;
+  --shadow:      0 18px 50px -18px rgba(60,35,15,.28);
+  --serif:       'Fraunces', Georgia, serif;
+  --sans:        'DM Sans', system-ui, sans-serif;
+  --hand:        'Caveat', cursive;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--sans);color:var(--ink);background:var(--limewash);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;font-variation-settings:"opsz" 144}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--terracotta)}
+.eyebrow::before{content:'';width:22px;height:2px;background:currentColor;border-radius:2px}
+.h2{font-size:clamp(2rem,4.2vw,3.3rem);line-height:1.08;margin:.8rem 0 1.1rem}
+.h2 em{font-style:italic;color:var(--terracotta)}
+.lede{font-size:1.05rem;color:var(--ink-soft);max-width:540px}
+.hand{font-family:var(--hand);font-weight:600}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--terracotta);color:var(--white);padding:1rem 1.7rem;border-radius:100px;font-size:.95rem;font-weight:600;border:none;transition:transform .2s,box-shadow .2s,background .2s;box-shadow:0 10px 24px -10px rgba(201,74,31,.7)}
+.btn:hover{background:var(--terracotta-dk);transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(201,74,31,.8)}
+.btn .arrow{transition:transform .2s}
+.btn:hover .arrow{transform:translateX(4px)}
+.link-arrow{display:inline-flex;align-items:center;gap:.45rem;font-weight:600;font-size:.95rem;color:var(--ink);border-bottom:2px solid var(--saffron);padding-bottom:2px;transition:gap .2s,color .2s}
+.link-arrow:hover{gap:.75rem;color:var(--terracotta)}
+
+/* ── NAV ── */
+nav{position:fixed;inset:0 0 auto 0;z-index:100;transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(251,247,240,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 24px;max-width:1280px;margin:0 auto}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1}
+.logo em{font-style:italic;font-weight:500;color:var(--terracotta)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--ink-soft);transition:color .2s}
+.nav-links a:hover{color:var(--terracotta)}
+.nav-links .btn{padding:.7rem 1.25rem;font-size:.85rem;color:var(--white)}
+.nav-links .btn:hover{color:var(--white)}
+.nav-toggle{display:none;background:none;border:none;width:44px;height:44px;align-items:center;justify-content:center}
+.nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:transform .25s,background .25s}
+.nav-toggle span::before,.nav-toggle span::after{content:'';position:absolute;left:0}
+.nav-toggle span::before{top:-7px}.nav-toggle span::after{top:7px}
+nav.open .nav-toggle span{background:transparent}
+nav.open .nav-toggle span::before{transform:translateY(7px) rotate(45deg)}
+nav.open .nav-toggle span::after{transform:translateY(-7px) rotate(-45deg)}
+
+/* ── HERO ── */
+.hero{position:relative;padding:8.5rem 0 5rem;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-20%;right:-10%;width:70vw;height:70vw;max-width:900px;max-height:900px;background:radial-gradient(circle,rgba(242,174,58,.28) 0%,rgba(242,174,58,0) 62%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center;position:relative}
+.hero-kicker{display:inline-flex;align-items:center;gap:.6rem;background:var(--white);border:1px solid var(--line);border-radius:100px;padding:.4rem .95rem .4rem .45rem;font-size:.8rem;font-weight:500;color:var(--ink-soft);margin-bottom:1.8rem;box-shadow:0 4px 14px -8px rgba(60,35,15,.25)}
+.hero-kicker .faces{display:flex}
+.face{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.62rem;font-weight:700;color:var(--white);border:2px solid var(--white);margin-left:-8px}
+.face:first-child{margin-left:0}
+.f1{background:var(--terracotta)}.f2{background:var(--olive)}.f3{background:var(--aegean)}.f4{background:var(--saffron);color:var(--ink)}
+.hero h1{font-size:clamp(2.9rem,6.4vw,5.6rem);line-height:.98;letter-spacing:-.03em;margin-bottom:1.6rem}
+.hero h1 .rot-line{display:block;position:relative;height:1.05em;overflow:hidden}
+.rot-word{position:absolute;left:0;top:0;font-style:italic;font-weight:500;color:var(--terracotta);white-space:nowrap;transition:transform .6s cubic-bezier(.7,0,.2,1),opacity .6s}
+.rot-word.out{transform:translateY(-105%);opacity:0}
+.rot-word.in{transform:translateY(105%);opacity:0}
+.hero h1 .quiet{display:block;font-size:.5em;line-height:1.15;font-style:italic;color:var(--ink-soft);margin-top:.5rem;letter-spacing:-.01em}
+.hero-sub{font-size:1.12rem;color:var(--ink-soft);max-width:500px;margin-bottom:2.2rem}
+.hero-actions{display:flex;align-items:center;gap:1.8rem;flex-wrap:wrap}
+.hero-proof{display:flex;gap:2.2rem;margin-top:3rem;padding-top:1.8rem;border-top:1px solid var(--line);flex-wrap:wrap}
+.proof-num{font-family:var(--serif);font-size:1.7rem;font-weight:500;line-height:1;color:var(--ink)}
+.proof-num .star{color:var(--saffron)}
+.proof-label{font-size:.78rem;color:var(--muted);margin-top:.35rem}
+
+.hero-visual{position:relative;justify-self:center;width:100%;max-width:470px}
+.hero-sun{position:absolute;top:-28px;right:-24px;width:150px;height:150px;border-radius:50%;background:var(--saffron);z-index:0;animation:float 7s ease-in-out infinite}
+.hero-arch{position:relative;z-index:1;aspect-ratio:4/5;border-radius:999px 999px 28px 28px;overflow:hidden;background:linear-gradient(160deg,#2b7f95,#e8a54b);box-shadow:var(--shadow)}
+.hero-arch img{width:100%;height:100%;object-fit:cover;object-position:62% 50%;transform:scale(1.04);transition:transform 6s ease}
+.hero-visual:hover .hero-arch img{transform:scale(1.1)}
+.hero-chip{position:absolute;top:18%;left:-34px;z-index:2;background:var(--white);border-radius:100px;padding:.55rem 1rem;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:.5rem;box-shadow:var(--shadow)}
+.hero-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--aegean);box-shadow:0 0 0 4px rgba(31,110,140,.18)}
+.note{position:absolute;z-index:2;background:#FFFDF8;border-radius:16px;padding:1rem 1.15rem 1.1rem;box-shadow:var(--shadow);border:1px solid rgba(29,36,48,.06)}
+.hero-note{bottom:-34px;left:-48px;width:290px;transform:rotate(-2.5deg)}
+.note-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.45rem}
+.note-head .face{width:32px;height:32px;margin:0;font-size:.7rem;border:none}
+.note-name{font-size:.8rem;font-weight:700;line-height:1.2}
+.note-role{font-size:.7rem;color:var(--muted)}
+.note p{font-family:var(--hand);font-size:1.3rem;line-height:1.2;color:var(--ink)}
+.note p u{text-decoration-color:var(--terracotta-bright);text-decoration-thickness:2px;text-underline-offset:3px}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* ── MARQUEE ── */
+.marquee{background:var(--terracotta);color:var(--limewash);overflow:hidden;padding:1.05rem 0;transform:rotate(-1.2deg);margin:1.5rem -2% 0;width:104%;position:relative;z-index:2}
+.marquee-track{display:flex;gap:2.2rem;width:max-content;animation:scroll 42s linear infinite}
+.marquee span{font-family:var(--serif);font-style:italic;font-size:1.45rem;white-space:nowrap;display:flex;align-items:center;gap:2.2rem}
+.marquee span::after{content:'✦';font-style:normal;font-size:.9rem;color:var(--saffron)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ── HOW ── */
+.how{padding:8rem 0 7rem}
+.how-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:3.5rem;flex-wrap:wrap}
+.how-head .lede{max-width:400px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;counter-reset:step}
+.step{position:relative;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:2rem 1.6rem 1.8rem;transition:transform .25s,box-shadow .25s}
+.step:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.step-num{font-family:var(--serif);font-size:3.2rem;font-weight:300;font-style:italic;line-height:1;color:var(--sand-2);margin-bottom:1.1rem;transition:color .25s}
+.step:hover .step-num{color:var(--terracotta)}
+.step h3{font-size:1.3rem;margin-bottom:.5rem;line-height:1.2}
+.step p{font-size:.92rem;color:var(--ink-soft)}
+.step:last-child{background:var(--olive);border-color:transparent;color:var(--white)}
+.step:last-child .step-num{color:rgba(255,255,255,.35)}
+.step:last-child:hover .step-num{color:var(--saffron)}
+.step:last-child p{color:rgba(255,255,255,.8)}
+
+/* ── SAMPLE ITINERARY ── */
+.sample{background:var(--sand);padding:7.5rem 0;position:relative;overflow:hidden}
+.sample::after{content:'';position:absolute;right:-120px;bottom:-120px;width:380px;height:380px;border-radius:50%;border:1.5px dashed rgba(201,74,31,.25);pointer-events:none}
+.sample-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:4.5rem;align-items:start}
+.sample-copy{position:sticky;top:110px}
+.checks{list-style:none;margin:2rem 0 2.4rem;display:grid;gap:.9rem}
+.checks li{display:flex;gap:.8rem;align-items:flex-start;font-size:.97rem;color:var(--ink-soft)}
+.checks li::before{content:'';flex:0 0 22px;height:22px;margin-top:1px;border-radius:50%;background:var(--olive) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/13px no-repeat}
+.checks strong{color:var(--ink);font-weight:600}
+
+.doc{background:#FFFDF8;border-radius:24px;box-shadow:0 30px 70px -30px rgba(60,35,15,.45);position:relative}
+.doc-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem 1.8rem 1.2rem;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.doc-title{font-family:var(--serif);font-size:1.2rem;font-weight:500}
+.doc-meta{font-size:.78rem;color:var(--muted)}
+.doc-planner{display:flex;align-items:center;gap:.55rem;font-size:.78rem;font-weight:600;background:var(--sand);padding:.3rem .8rem .3rem .3rem;border-radius:100px}
+.doc-planner .face{width:26px;height:26px;margin:0;border:none}
+.tabs{display:flex;gap:.4rem;padding:1rem 1.8rem 0;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:transparent;border:1.5px solid var(--line);border-radius:100px;padding:.45rem 1rem;font-size:.82rem;font-weight:600;color:var(--ink-soft);transition:all .2s}
+.tab:hover{border-color:var(--terracotta);color:var(--terracotta)}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.day{display:none;padding:1.6rem 1.8rem 2rem;animation:fadeUp .45s ease}
+.day.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.day-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:1.3rem;flex-wrap:wrap}
+.day-head h3{font-size:1.65rem;line-height:1.15}
+.day-head h3 em{color:var(--terracotta)}
+.day-place{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--aegean)}
+.timeline{list-style:none;position:relative;display:grid;gap:1.1rem}
+.timeline::before{content:'';position:absolute;left:52px;top:6px;bottom:6px;width:1.5px;background:repeating-linear-gradient(var(--sand-2) 0 5px,transparent 5px 10px)}
+.timeline li{display:grid;grid-template-columns:44px 1fr;gap:1.6rem;align-items:start;position:relative}
+.timeline li::before{content:'';position:absolute;left:48px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--limewash);border:2px solid var(--terracotta)}
+.t-time{font-size:.78rem;font-weight:700;color:var(--muted);padding-top:2px;font-variant-numeric:tabular-nums}
+.t-what{font-size:.95rem;font-weight:600;line-height:1.35}
+.t-why{font-size:.84rem;color:var(--ink-soft);margin-top:.15rem}
+.planb{display:flex;gap:.7rem;align-items:flex-start;margin-top:1.4rem;background:var(--olive-lt);border-radius:14px;padding:.85rem 1rem;font-size:.84rem;color:var(--olive-dk)}
+.planb b{flex:0 0 auto;background:var(--olive);color:var(--white);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;border-radius:6px;padding:.2rem .45rem;margin-top:1px}
+.margin-note{position:relative;width:fit-content;max-width:250px;margin:1.4rem -34px -2.6rem auto;background:var(--saffron-lt);padding:.8rem 1rem .9rem;border-radius:4px 16px 16px 16px;transform:rotate(2.5deg);box-shadow:0 12px 26px -14px rgba(60,35,15,.5)}
+.margin-note p{font-family:var(--hand);font-size:1.25rem;line-height:1.15;color:var(--ink)}
+.margin-note span{display:block;font-family:var(--hand);font-size:1.05rem;color:var(--terracotta-dk);margin-top:.3rem}
+.day{position:relative}
+
+/* ── PLANNERS ── */
+.planners{padding:8rem 0 7rem}
+.planners-head{text-align:center;max-width:680px;margin:0 auto 3.5rem}
+.planners-head .lede{margin:0 auto}
+.planner-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.planner{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem 1.4rem 1.6rem;transition:transform .25s,box-shadow .25s}
+.planner:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.portrait{aspect-ratio:1/1.05;border-radius:999px 999px 14px 14px;display:grid;place-items:center;margin-bottom:1.2rem;position:relative;overflow:hidden}
+.portrait .initials{font-family:var(--serif);font-size:3.6rem;font-style:italic;font-weight:400;color:rgba(255,255,255,.95);position:relative;z-index:1}
+.portrait::after{content:'';position:absolute;inset:auto -10% -35% -10%;height:70%;border-radius:50%;background:rgba(255,255,255,.14)}
+.p1{background:linear-gradient(160deg,#E2622F,#B8431C)}
+.p2{background:linear-gradient(160deg,#F2AE3A,#D98A17)}
+.p3{background:linear-gradient(160deg,#2A89A8,#1B5E78)}
+.p4{background:linear-gradient(160deg,#6F7D48,#46522C)}
+.planner h3{font-size:1.35rem;line-height:1.1}
+.planner-region{font-size:.78rem;font-weight:600;color:var(--terracotta);letter-spacing:.04em;margin:.3rem 0 .7rem}
+.planner-bio{font-size:.87rem;color:var(--ink-soft);margin-bottom:.9rem}
+.planner-secret{border-top:1px dashed var(--sand-2);padding-top:.8rem;font-family:var(--hand);font-size:1.2rem;line-height:1.2;color:var(--olive-dk)}
+.planners-foot{display:flex;justify-content:center;margin-top:2.8rem}
+.promise-pill{display:inline-flex;align-items:center;gap:.7rem;background:var(--sand);border-radius:100px;padding:.7rem 1.3rem;font-size:.9rem;color:var(--ink-soft)}
+.promise-pill strong{color:var(--ink)}
+
+/* ── DESTINATIONS ── */
+.dest{padding:0 0 8rem}
+.dest-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
+.dest-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:280px 280px;gap:1.1rem}
+.poster{position:relative;border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:1.6rem;color:var(--white);isolation:isolate;transition:transform .3s}
+.poster:hover{transform:translateY(-4px)}
+.poster::before{content:'';position:absolute;inset:0;z-index:-1;transition:transform .6s ease}
+.poster:hover::before{transform:scale(1.06)}
+.poster h3{font-size:2.2rem;line-height:1;font-weight:500}
+.poster h3 em{font-weight:400}
+.poster-sub{font-size:.85rem;opacity:.85;margin-top:.45rem;max-width:260px}
+.poster-go{position:absolute;top:1.3rem;right:1.3rem;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);display:grid;place-items:center;font-size:1.1rem;transition:background .25s,transform .25s}
+.poster:hover .poster-go{background:var(--white);color:var(--ink);transform:rotate(-45deg)}
+.poster-tag{position:absolute;top:1.4rem;left:1.5rem;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--saffron);color:var(--ink);padding:.3rem .65rem;border-radius:100px}
+.pg{grid-row:span 2}
+.pg::before{background:linear-gradient(to top,rgba(20,18,25,.78) 0%,rgba(20,18,25,0) 55%),var(--greece-img, linear-gradient(160deg,#2b7f95,#e8a54b)) center/cover}
+.pi{background:var(--saffron);color:var(--ink)}
+.pi::before{background:linear-gradient(to top,#EC9C2D 0%,rgba(236,156,45,.92) 38%,rgba(236,156,45,0) 68%),url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22 viewBox=%220 0 140 140%22%3E%3Cg transform=%22rotate(-25 40 40)%22%3E%3Cellipse cx=%2240%22 cy=%2240%22 rx=%2217%22 ry=%2212%22 fill=%22%23FFE790%22/%3E%3Ccircle cx=%2223%22 cy=%2240%22 r=%223%22 fill=%22%23FFE790%22/%3E%3Cpath d=%22M54 37c8-10 20-9 24-4-8 7-17 8-24 4z%22 fill=%22%236F7D48%22/%3E%3C/g%3E%3Cg transform=%22rotate(20 105 100)%22%3E%3Cellipse cx=%22105%22 cy=%22100%22 rx=%2215%22 ry=%2211%22 fill=%22%23FFE790%22/%3E%3Ccircle cx=%2290%22 cy=%22100%22 r=%222.6%22 fill=%22%23FFE790%22/%3E%3Cpath d=%22M118 97c7-9 18-8 21-3-7 6-15 7-21 3z%22 fill=%22%236F7D48%22/%3E%3C/g%3E%3C/svg%3E") 0 0/140px 140px,linear-gradient(160deg,#F7BE55,#E8962A);opacity:1}
+.pi .poster-go{background:rgba(29,36,48,.12)}
+.ps::before{background:
+  radial-gradient(circle at 50% 100%,transparent 0 26px,rgba(255,255,255,.12) 27px 29px,transparent 30px) 0 0/60px 70px,
+  linear-gradient(160deg,#E2622F,#A83A14)}
+.pc::before{background:
+  radial-gradient(ellipse 60px 14px at 50% 100%,rgba(255,255,255,.14) 0 60%,transparent 62%) 0 0/80px 34px,
+  linear-gradient(170deg,#2A89A8,#16506A)}
+.pp::before{background:
+  conic-gradient(from 45deg at 50% 50%,rgba(255,255,255,.14) 0 25%,transparent 0 50%,rgba(255,255,255,.14) 0 75%,transparent 0) 0 0/36px 36px,
+  linear-gradient(160deg,#6F7D48,#3E4829)}
+
+/* ── STORIES ── */
+.stories{background:var(--ink);color:var(--limewash);padding:8rem 0;position:relative;overflow:hidden}
+.stories::before{content:'';position:absolute;left:-200px;top:-200px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(226,98,47,.25),transparent 65%)}
+.stories .eyebrow{color:var(--saffron)}
+.stories-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:4rem;align-items:center;position:relative}
+.big-quote{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.35rem);line-height:1.3;font-weight:300;margin:1.4rem 0 2rem}
+.big-quote em{color:var(--saffron);font-style:italic;font-weight:400}
+.q-author{display:flex;align-items:center;gap:.9rem}
+.q-author .face{width:48px;height:48px;border:none;margin:0;font-size:.85rem}
+.q-name{font-weight:600}
+.q-trip{font-size:.85rem;color:rgba(251,247,240,.55)}
+.rating-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:2rem;margin-bottom:1.1rem}
+.rating-num{font-family:var(--serif);font-size:4rem;line-height:1;font-weight:400}
+.stars{color:var(--saffron);letter-spacing:.15em;font-size:1rem;margin:.5rem 0 .3rem}
+.rating-card small{color:rgba(251,247,240,.55);font-size:.85rem}
+.mini-q{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:1.4rem 1.5rem;margin-bottom:1.1rem;font-size:.92rem;color:rgba(251,247,240,.82)}
+.mini-q:last-child{margin-bottom:0}
+.mini-q cite{display:block;font-style:normal;font-size:.78rem;color:rgba(251,247,240,.5);margin-top:.7rem}
+
+/* ── PROMISE STRIP ── */
+.promise{background:var(--olive);color:var(--white);padding:1.4rem 0}
+.promise-list{display:flex;justify-content:center;flex-wrap:wrap;gap:.8rem 2.6rem;list-style:none;font-size:.9rem;font-weight:500}
+.promise-list li{display:flex;align-items:center;gap:.55rem}
+.promise-list li::before{content:'✦';color:var(--saffron);font-size:.8rem}
+
+/* ── START / CONTACT ── */
+.start{padding:8rem 0;background:
+  radial-gradient(ellipse at 90% 110%,rgba(242,174,58,.55),transparent 55%),
+  radial-gradient(ellipse at 0% 0%,rgba(226,98,47,.18),transparent 50%),
+  var(--limewash)}
+.start-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:4.5rem;align-items:center}
+.start-copy .h2{font-size:clamp(2.3rem,5vw,3.8rem)}
+.start-reassure{display:grid;gap:1rem;margin-top:2.2rem}
+.reassure{display:flex;gap:.9rem;align-items:flex-start}
+.reassure-ic{flex:0 0 40px;height:40px;border-radius:12px;background:var(--white);display:grid;place-items:center;box-shadow:0 6px 16px -10px rgba(60,35,15,.4)}
+.reassure-ic svg{width:20px;height:20px;stroke:var(--terracotta)}
+.reassure strong{display:block;font-size:.95rem}
+.reassure span{font-size:.87rem;color:var(--ink-soft)}
+.form-card{background:var(--white);border-radius:28px;padding:2.3rem;box-shadow:0 30px 70px -30px rgba(60,35,15,.45);position:relative}
+.form-card h3{font-size:1.5rem;margin-bottom:.3rem}
+.form-sub{font-size:.88rem;color:var(--muted);margin-bottom:1.6rem}
+.field-label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.6rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.chip{border:1.5px solid var(--line);background:var(--limewash);border-radius:100px;padding:.5rem .95rem;font-size:.86rem;font-weight:500;color:var(--ink);transition:all .18s}
+.chip:hover{border-color:var(--terracotta)}
+.chip[aria-pressed="true"]{background:var(--terracotta);border-color:var(--terracotta);color:var(--white)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem}
+.input{width:100%;border:1.5px solid var(--line);background:var(--limewash);border-radius:14px;padding:.9rem 1rem;font:inherit;font-size:.95rem;color:var(--ink);outline:none;transition:border-color .2s,background .2s;appearance:none}
+.input:focus{border-color:var(--terracotta);background:var(--white)}
+select.input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237A7166' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;background-size:16px;padding-right:2.4rem}
+textarea.input{resize:vertical;min-height:88px;margin-bottom:1.2rem}
+.form-card .btn{width:100%;justify-content:center;padding:1.1rem}
+.form-fine{text-align:center;font-size:.78rem;color:var(--muted);margin-top:.9rem}
+.form-done{display:none;text-align:center;padding:2.5rem 1rem}
+.form-done .sun{width:74px;height:74px;border-radius:50%;background:var(--saffron);margin:0 auto 1.2rem;display:grid;place-items:center;font-size:1.8rem}
+.form-done h3{font-size:1.8rem;margin-bottom:.6rem}
+.form-done p{color:var(--ink-soft);max-width:340px;margin:0 auto}
+.form-card.sent form{display:none}
+.form-card.sent .form-done{display:block;animation:fadeUp .5s ease}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:rgba(251,247,240,.7);padding:5rem 0 2rem}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:3rem;margin-bottom:3.5rem}
+footer .logo{color:var(--limewash);font-size:1.6rem}
+footer .logo em{color:var(--terracotta-bright)}
+.foot-tag{font-family:var(--hand);font-size:1.35rem;color:var(--saffron);margin:.6rem 0 .8rem}
+.foot-desc{font-size:.88rem;max-width:280px}
+footer h4{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(251,247,240,.45);margin-bottom:1.1rem}
+footer ul{list-style:none;display:grid;gap:.65rem;font-size:.9rem}
+footer a:hover{color:var(--saffron)}
+.nl{display:flex;gap:.5rem;margin-top:.2rem}
+.nl input{flex:1;min-width:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:.75rem 1rem;color:var(--limewash);font:inherit;font-size:.88rem;outline:none}
+.nl input:focus{border-color:var(--saffron)}
+.nl button{background:var(--saffron);color:var(--ink);border:none;border-radius:100px;padding:.75rem 1.1rem;font-weight:700;font-size:.85rem}
+.nl-fine{font-size:.78rem;color:rgba(251,247,240,.45);margin-top:.7rem}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.6rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.8rem;color:rgba(251,247,240,.45)}
+.foot-social{display:flex;gap:1.4rem}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.shown{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media (max-width:1024px){
+  .hero-grid,.sample-grid,.stories-grid,.start-grid{grid-template-columns:1fr;gap:3.5rem}
+  .hero-visual{max-width:420px}
+  .sample-copy{position:static}
+  .steps,.planner-grid{grid-template-columns:repeat(2,1fr)}
+  .dest-grid{grid-template-columns:1fr 1fr;grid-template-rows:340px 240px 240px}
+  .pg{grid-row:auto;grid-column:span 2}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .margin-note{margin-right:-8px}
+}
+@media (max-width:760px){
+  .nav-toggle{display:flex}
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--limewash);padding:.5rem 24px 1.4rem;box-shadow:0 20px 30px -20px rgba(60,35,15,.3);display:none}
+  nav.open{background:var(--limewash)}
+  nav.open .nav-links{display:flex}
+  .nav-links li a{display:block;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:1rem}
+  .nav-links li:last-child a{border:none;margin-top:1rem;justify-content:center;padding:.9rem}
+  .hero{padding:7rem 0 4.5rem}
+  .hero-proof{gap:1.1rem;flex-wrap:nowrap;justify-content:space-between}
+  .proof-num{font-size:1.45rem}
+  .proof-label{font-size:.72rem}
+  .hero-visual{max-width:340px;margin-bottom:2rem}
+  .hero-chip{left:-10px}
+  .hero-note{left:-14px;width:250px;bottom:-40px}
+  .hero-sun{width:110px;height:110px;right:-10px}
+  .how,.planners{padding:6rem 0 5rem}
+  .sample,.stories,.start{padding:6rem 0}
+  .steps,.planner-grid{grid-template-columns:1fr}
+  .dest-grid{grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:220px}
+  .pg{grid-column:auto;height:320px}
+  .doc-top,.tabs{padding-left:1.2rem;padding-right:1.2rem}
+  .day{padding:1.4rem 1.2rem 2rem}
+  .timeline li{grid-template-columns:40px 1fr;gap:1.3rem}
+  .timeline::before{left:46px}
+  .timeline li::before{left:42px}
+  .margin-note{margin:1.2rem -6px -2.4rem auto;max-width:240px}
+  .row{grid-template-columns:1fr}
+  .form-card{padding:1.6rem}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo" aria-label="Personally Travel home">Personally <em>Travel</em></a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#sample">Sample trip</a></li>
+      <li><a href="#planners">Our planners</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#start" class="btn">Start my trip <span class="arrow">→</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-kicker">
+        <span class="faces" aria-hidden="true"><span class="face f1">EK</span><span class="face f2">MR</span><span class="face f3">AB</span></span>
+        Real local planners · not algorithms
+      </div>
+      <h1>
+        Your
+        <span class="rot-line" aria-hidden="true"><span class="rot-word" id="rotWord">Cycladic</span></span>
+        summer,
+        <span class="quiet">planned by someone who's actually been there.</span>
+        <span class="visually-hidden">Your Mediterranean summer, planned by someone who's actually been there.</span>
+      </h1>
+      <p class="hero-sub">Our local experts write every day of your trip from scratch — the ferries, the tables, the quiet coves — so all that's left for you is to show up and fall in love.</p>
+      <div class="hero-actions">
+        <a href="#start" class="btn">Start planning my trip <span class="arrow">→</span></a>
+        <a href="#sample" class="link-arrow">Peek at a real itinerary <span>↓</span></a>
+      </div>
+      <div class="hero-proof">
+        <div><div class="proof-num"><span class="star">★</span> 4.9</div><div class="proof-label">from 3,500+ reviews</div></div>
+        <div><div class="proof-num">200+</div><div class="proof-label">journeys hand-crafted</div></div>
+        <div><div class="proof-num">24/7</div><div class="proof-label">support while you travel</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-sun" aria-hidden="true"></div>
+      <div class="hero-arch">
+        <img src="../images/beautiful-view-oia-santorini-lit-up-ocean-background.jpg"
+             onerror="this.onerror=null;this.src='images/beautiful-view-oia-santorini-lit-up-ocean-background.jpg'"
+             alt="Whitewashed village of Oia, Santorini, glowing at dusk above the Aegean"/>
+      </div>
+      <div class="hero-chip"><span class="dot"></span>Day 4 · Santorini</div>
+      <div class="note hero-note">
+        <div class="note-head">
+          <span class="face f1">EK</span>
+          <div><div class="note-name">Eleni K.</div><div class="note-role">Your Cyclades planner</div></div>
+        </div>
+        <p>Skip Oia at sunset — I've booked you <u>a table in Imerovigli</u>. Same view, none of the crowds.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Milos</span><span>Positano</span><span>Hvar</span><span>Seville</span><span>Comporta</span><span>Folegandros</span><span>Taormina</span><span>Vis</span><span>Mallorca</span><span>Nafplio</span><span>Douro Valley</span><span>Ravello</span>
+    <span>Milos</span><span>Positano</span><span>Hvar</span><span>Seville</span><span>Comporta</span><span>Folegandros</span><span>Taormina</span><span>Vis</span><span>Mallorca</span><span>Nafplio</span><span>Douro Valley</span><span>Ravello</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="how-head reveal">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2 class="h2">From daydream <em>to boarding pass</em></h2>
+      </div>
+      <p class="lede">One planner, one conversation, one trip written entirely for you. No templates, no group tours, no endless tabs open at midnight.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>Tell us the dream</h3>
+        <p>A relaxed chat with your planner about who's coming, what you love, and how you like to travel.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h3>We write it from scratch</h3>
+        <p>A day-by-day plan: the stays, the ferries, the drivers, the tables — and the moments in between.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h3>Shape it together</h3>
+        <p>Swap, slow down, add a day on the boat. We refine until it feels exactly like your trip.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <h3>Go. We've got you.</h3>
+        <p>Travel with a beautiful guide in your pocket and your planner just a message away, 24/7.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE ITINERARY -->
+<section class="sample" id="sample">
+  <div class="wrap sample-grid">
+    <div class="sample-copy reveal">
+      <span class="eyebrow">A peek inside</span>
+      <h2 class="h2">This is what <em>“personally planned”</em> actually looks like</h2>
+      <p class="lede">Not a list of hotels. A living plan, annotated by the person who built it — full of the small, local decisions that turn a good trip into the one you talk about for years.</p>
+      <ul class="checks">
+        <li><span><strong>Every transfer timed</strong> — ferries, drivers and boats line up so you never wait on a dock.</span></li>
+        <li><span><strong>Tables chosen, not searched</strong> — places with no website and the best seat already requested.</span></li>
+        <li><span><strong>A Plan B for every day</strong> — wind, heat or strikes, your planner has already thought of it.</span></li>
+        <li><span><strong>Notes only a local would know</strong> — when to go, where to stand, who to ask for.</span></li>
+      </ul>
+      <a href="#start" class="btn">I want one of these <span class="arrow">→</span></a>
+    </div>
+
+    <div class="doc reveal">
+      <div class="doc-top">
+        <div>
+          <div class="doc-title">The Cyclades, slowly</div>
+          <div class="doc-meta">10 days · Milos, Folegandros, Santorini · for Helen &amp; Marcus</div>
+        </div>
+        <div class="doc-planner"><span class="face f1">EK</span>Planned by Eleni</div>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Itinerary days">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="d1" id="t1">Day 1</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="d2" id="t2" tabindex="-1">Day 2</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="d3" id="t3" tabindex="-1">Day 3</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="d4" id="t4" tabindex="-1">Day 4</button>
+      </div>
+
+      <div class="day active" role="tabpanel" id="d1" aria-labelledby="t1">
+        <div class="day-head"><h3>Arrive, exhale, <em>swim</em></h3><span class="day-place">Athens → Milos</span></div>
+        <ol class="timeline">
+          <li><span class="t-time">07:15</span><div><div class="t-what">Fast ferry from Piraeus</div><div class="t-why">Seats reserved on the upper deck, port side — for the first glimpse of the islands.</div></div></li>
+          <li><span class="t-time">10:40</span><div><div class="t-what">Nikos meets you at Adamas port</div><div class="t-why">Bags to your suite in Pollonia; you go straight to the water.</div></div></li>
+          <li><span class="t-time">13:30</span><div><div class="t-what">Lunch at a family taverna by the harbour</div><div class="t-why">Order whatever the fishermen brought in that morning.</div></div></li>
+          <li><span class="t-time">19:20</span><div><div class="t-what">Sunset at Sarakiniko</div><div class="t-why">The moon-white rocks turn pink. Arrive 40 minutes early for the best ledge.</div></div></li>
+        </ol>
+        <div class="margin-note"><p>Bring a light layer for Sarakiniko — the rocks hold the wind after dark.</p><span>— Eleni</span></div>
+      </div>
+
+      <div class="day" role="tabpanel" id="d2" aria-labelledby="t2" hidden>
+        <div class="day-head"><h3>Sea caves &amp; <em>salt hair</em></h3><span class="day-place">Around Milos by boat</span></div>
+        <ol class="timeline">
+          <li><span class="t-time">09:30</span><div><div class="t-what">Private caïque to Kleftiko</div><div class="t-why">Before the day boats arrive — you'll have the arches almost to yourselves.</div></div></li>
+          <li><span class="t-time">12:00</span><div><div class="t-what">Swim stop at Gerakas</div><div class="t-why">Reachable only by sea. Snorkels on board.</div></div></li>
+          <li><span class="t-time">13:30</span><div><div class="t-what">Lunch on deck</div><div class="t-why">Grilled octopus and island wine, cooked by Captain Stavros.</div></div></li>
+          <li><span class="t-time">20:30</span><div><div class="t-what">Evening wander in Plaka</div><div class="t-why">No plans. Follow the lanes up to the castle for the lights.</div></div></li>
+        </ol>
+        <div class="planb"><b>Plan B</b><span>If the meltemi picks up, the boat switches to the sheltered south coast — already arranged with the captain.</span></div>
+        <div class="margin-note"><p>Ask Stavros about the pirates of Kleftiko. He tells it better than any guidebook.</p><span>— Eleni</span></div>
+      </div>
+
+      <div class="day" role="tabpanel" id="d3" aria-labelledby="t3" hidden>
+        <div class="day-head"><h3>The island <em>time forgot</em></h3><span class="day-place">Milos → Folegandros</span></div>
+        <ol class="timeline">
+          <li><span class="t-time">11:10</span><div><div class="t-what">Short hop to Folegandros</div><div class="t-why">Fewer than 800 people live here year-round. You'll see why they stay.</div></div></li>
+          <li><span class="t-time">13:00</span><div><div class="t-what">Check in above the cliffs</div><div class="t-why">A cave-style suite with its own terrace over the Aegean.</div></div></li>
+          <li><span class="t-time">18:45</span><div><div class="t-what">Walk up to Panagia church</div><div class="t-why">A zig-zag path, 20 minutes, the whole island glowing below you.</div></div></li>
+          <li><span class="t-time">20:30</span><div><div class="t-what">Dinner in Chora's squares</div><div class="t-why">Try matsata — the island's hand-rolled pasta.</div></div></li>
+        </ol>
+        <div class="margin-note"><p>The table by the stone wall is the one. I've asked for it.</p><span>— Eleni</span></div>
+      </div>
+
+      <div class="day" role="tabpanel" id="d4" aria-labelledby="t4" hidden>
+        <div class="day-head"><h3>Santorini, <em>the quiet way</em></h3><span class="day-place">Folegandros → Santorini</span></div>
+        <ol class="timeline">
+          <li><span class="t-time">10:00</span><div><div class="t-what">Ferry to Santorini, driver waiting</div><div class="t-why">Straight past the port queues to your hotel in Imerovigli.</div></div></li>
+          <li><span class="t-time">15:00</span><div><div class="t-what">Volcanic wine tasting</div><div class="t-why">A small family estate — vines woven into baskets against the wind.</div></div></li>
+          <li><span class="t-time">19:40</span><div><div class="t-what">Sunset dinner, Imerovigli</div><div class="t-why">Same caldera view as Oia, a fraction of the crowd.</div></div></li>
+        </ol>
+        <div class="planb"><b>Plan B</b><span>Ferry strike? A private speedboat is on standby — you won't lose the evening.</span></div>
+        <div class="margin-note"><p>Walk to Skaros Rock at dawn tomorrow. You'll thank me.</p><span>— Eleni</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANNERS -->
+<section class="planners" id="planners">
+  <div class="wrap">
+    <div class="planners-head reveal">
+      <span class="eyebrow">The people behind your trip</span>
+      <h2 class="h2">Planned by locals, <em>not by algorithms</em></h2>
+      <p class="lede">You'll be matched with one planner who knows your destination inside out — the hidden spots, the best tables, the real experience. They stay with you from first idea to final sunset.</p>
+    </div>
+    <div class="planner-grid">
+      <article class="planner reveal">
+        <div class="portrait p1"><span class="initials">EK</span></div>
+        <h3>Eleni</h3>
+        <div class="planner-region">Greek Islands &amp; Athens</div>
+        <p class="planner-bio">Grew up between Naxos and Athens; has spent more summers on ferries than she can count.</p>
+        <div class="planner-secret">"Folegandros in late September. Warm sea, empty lanes."</div>
+      </article>
+      <article class="planner reveal">
+        <div class="portrait p2"><span class="initials">MR</span></div>
+        <h3>Marco</h3>
+        <div class="planner-region">Amalfi Coast &amp; Sicily</div>
+        <p class="planner-bio">A Neapolitan who knows which lemon grove serves lunch and which boatman to call at dawn.</p>
+        <div class="planner-secret">"Skip Positano's beach — take the path to Fornillo."</div>
+      </article>
+      <article class="planner reveal">
+        <div class="portrait p3"><span class="initials">AB</span></div>
+        <h3>Ana</h3>
+        <div class="planner-region">Dalmatian Coast</div>
+        <p class="planner-bio">Sails the coast from Split to Dubrovnik every season; friends with half the konobas on Vis.</p>
+        <div class="planner-secret">"Stiniva cove by boat, before 9am. Trust me."</div>
+      </article>
+      <article class="planner reveal">
+        <div class="portrait p4"><span class="initials">IS</span></div>
+        <h3>Inês</h3>
+        <div class="planner-region">Portugal &amp; Andalusia</div>
+        <p class="planner-bio">Lisbon-born, Alentejo at heart — wine country, cork forests and the Atlantic wild coast.</p>
+        <div class="planner-secret">"Comporta's rice fields at golden hour, then fish on the grill."</div>
+      </article>
+    </div>
+    <div class="planners-foot reveal">
+      <div class="promise-pill"><span class="face f2" style="margin:0;border:none">✓</span><span><strong>One planner, start to finish.</strong> A real person replies — never a bot.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="dest" id="destinations">
+  <div class="wrap">
+    <div class="dest-head reveal">
+      <div>
+        <span class="eyebrow">Where we'll take you</span>
+        <h2 class="h2">Five coastlines, <em>endless ways</em> to fall for them</h2>
+      </div>
+      <a href="#start" class="link-arrow">Not sure where yet? Ask a planner <span>→</span></a>
+    </div>
+    <div class="dest-grid">
+      <a href="#start" class="poster pg reveal" data-dest="Greece">
+        <span class="poster-tag">Most requested</span>
+        <span class="poster-go" aria-hidden="true">→</span>
+        <h3>Greece</h3>
+        <p class="poster-sub">Cyclades, Crete, the Peloponnese &amp; the Ionian — islands, ruins and hidden coves.</p>
+      </a>
+      <a href="#start" class="poster pi reveal" data-dest="Italy">
+        <span class="poster-go" aria-hidden="true">→</span>
+        <h3>Italy</h3>
+        <p class="poster-sub">Amalfi, Tuscany, Sicily — coast, culture &amp; la dolce vita.</p>
+      </a>
+      <a href="#start" class="poster ps reveal" data-dest="Spain">
+        <span class="poster-go" aria-hidden="true">→</span>
+        <h3>Spain</h3>
+        <p class="poster-sub">Andalusia, the Basque Country &amp; the Balearics.</p>
+      </a>
+      <a href="#start" class="poster pc reveal" data-dest="Croatia">
+        <span class="poster-go" aria-hidden="true">→</span>
+        <h3>Croatia</h3>
+        <p class="poster-sub">The Dalmatian Coast, Dubrovnik &amp; island hopping by boat.</p>
+      </a>
+      <a href="#start" class="poster pp reveal" data-dest="Portugal">
+        <span class="poster-go" aria-hidden="true">→</span>
+        <h3>Portugal</h3>
+        <p class="poster-sub">Lisbon, the Alentejo, the Algarve &amp; the Douro Valley.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="stories" id="stories">
+  <div class="wrap stories-grid">
+    <div class="reveal">
+      <span class="eyebrow">Traveller stories</span>
+      <blockquote class="big-quote">“The restaurant in Nafplio had no online presence — just a doorway in an old stone wall and <em>the most memorable meal of our trip.</em> That's the Personally Travel difference.”</blockquote>
+      <div class="q-author">
+        <span class="face f1">HM</span>
+        <div><div class="q-name">Helen &amp; Marcus</div><div class="q-trip">Greece — Peloponnese &amp; Athens, 10 days</div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="rating-card">
+        <div class="rating-num">4.9</div>
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <small>Average from 3,500+ traveller reviews</small>
+      </div>
+      <div class="mini-q">“We explored the Algarve and Alentejo with the whole family and every single detail had been thought through. The kids are already asking when we go back.”<cite>Matthew &amp; Tara · Portugal, 12 days</cite></div>
+      <div class="mini-q">“We felt completely looked after without ever feeling watched. Already planning the next one.”<cite>Rachel &amp; Priya · Amalfi &amp; Sicily, 9 days</cite></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE STRIP -->
+<div class="promise">
+  <ul class="wrap promise-list">
+    <li>Written from scratch, for you</li>
+    <li>Local insider access</li>
+    <li>Stress-free logistics</li>
+    <li>24/7 support on the ground</li>
+    <li>No hidden fees</li>
+  </ul>
+</div>
+
+<!-- START / CONTACT -->
+<section class="start" id="start">
+  <div class="wrap start-grid">
+    <div class="start-copy reveal">
+      <span class="eyebrow">Start here</span>
+      <h2 class="h2">Where's <em>your</em> Mediterranean?</h2>
+      <p class="lede">Tell us a little about the trip you're dreaming of. A planner who knows the region will reply to you personally — and the adventure starts there.</p>
+      <div class="start-reassure">
+        <div class="reassure">
+          <span class="reassure-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <div><strong>A real conversation</strong><span>Your message goes to a person, not an inbox robot.</span></div>
+        </div>
+        <div class="reassure">
+          <span class="reassure-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+          <div><strong>Written only for you</strong><span>No templates, no group tours — ever.</span></div>
+        </div>
+        <div class="reassure">
+          <span class="reassure-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <div><strong>Looked after all the way</strong><span>24/7 support while you're travelling, and no hidden fees.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card reveal" id="formCard">
+      <form id="tripForm" novalidate>
+        <h3>Let's start your trip</h3>
+        <p class="form-sub">Takes about a minute. No commitment.</p>
+
+        <span class="field-label" id="whereLbl">Where are you dreaming of?</span>
+        <div class="chips" role="group" aria-labelledby="whereLbl">
+          <button type="button" class="chip" aria-pressed="false">Greece</button>
+          <button type="button" class="chip" aria-pressed="false">Italy</button>
+          <button type="button" class="chip" aria-pressed="false">Spain</button>
+          <button type="button" class="chip" aria-pressed="false">Croatia</button>
+          <button type="button" class="chip" aria-pressed="false">Portugal</button>
+          <button type="button" class="chip" aria-pressed="false">Help me choose</button>
+        </div>
+
+        <div class="row">
+          <div>
+            <label class="field-label" for="when">When</label>
+            <select class="input" id="when">
+              <option>Spring 2027</option>
+              <option selected>Summer 2027</option>
+              <option>Autumn 2027</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="who">Who's going</label>
+            <select class="input" id="who">
+              <option>Just me</option>
+              <option selected>A couple</option>
+              <option>Family with kids</option>
+              <option>Group of friends</option>
+              <option>Honeymoon</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label class="field-label" for="name">Your name</label>
+            <input class="input" id="name" type="text" placeholder="First name" autocomplete="given-name" required/>
+          </div>
+          <div>
+            <label class="field-label" for="email">Email</label>
+            <input class="input" id="email" type="email" placeholder="you@email.com" autocomplete="email" required/>
+          </div>
+        </div>
+        <label class="field-label" for="dream">The dream, in a sentence <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted)">(optional)</span></label>
+        <textarea class="input" id="dream" placeholder="Slow mornings, a boat day, and one unforgettable dinner…"></textarea>
+
+        <button type="submit" class="btn">Send to a planner <span class="arrow">→</span></button>
+        <p class="form-fine">We'll only use your details to plan your trip.</p>
+      </form>
+      <div class="form-done" role="status" aria-live="polite">
+        <div class="sun">☀</div>
+        <h3 id="doneTitle">Wonderful — it's started.</h3>
+        <p>A planner will read your note personally and be in touch soon. Start thinking about what you'll pack.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo">Personally <em>Travel</em></a>
+        <div class="foot-tag">Your trip. Your story.</div>
+        <p class="foot-desc">Bespoke Mediterranean itineraries crafted by local experts across Greece, Italy, Spain, Croatia and Portugal.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#sample">Sample itinerary</a></li>
+          <li><a href="#planners">Our planners</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@personally.travel">hello@personally.travel</a></li>
+          <li><a href="#">+30 210 000 0000</a></li>
+          <li>Athens, Greece</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Postcards from the Med</h4>
+        <form class="nl" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ Done';">
+          <label for="nlEmail" class="visually-hidden">Email address</label>
+          <input id="nlEmail" type="email" placeholder="your@email.com"/>
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="nl-fine">New itineraries and seasonal inspiration, occasionally. Never spammy.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Personally Travel. All rights reserved.</span>
+      <div class="foot-social">
+        <a href="https://www.instagram.com">Instagram</a>
+        <a href="https://www.facebook.com">Facebook</a>
+        <a href="https://www.twitter.com">X / Twitter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav: scrolled state + mobile menu
+const nav = document.getElementById('nav');
+const toggle = nav.querySelector('.nav-toggle');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+toggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open);
+});
+nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('open'); toggle.setAttribute('aria-expanded', false);
+}));
+
+// Hero: rotating destination word
+const words = ['Cycladic','Amalfi','Dalmatian','Andalusian','Sicilian','Algarve'];
+const rot = document.getElementById('rotWord');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let wi = 0;
+if (!reduced) setInterval(() => {
+  rot.classList.add('out');
+  setTimeout(() => {
+    wi = (wi + 1) % words.length;
+    rot.textContent = words[wi];
+    rot.classList.remove('out'); rot.classList.add('in');
+    requestAnimationFrame(() => requestAnimationFrame(() => rot.classList.remove('in')));
+  }, 600);
+}, 2600);
+
+// Greece poster uses the same photo as the hero (resolved path)
+const heroImg = document.querySelector('.hero-arch img');
+const setGreece = () => document.documentElement.style.setProperty('--greece-img', `url("${heroImg.currentSrc || heroImg.src}")`);
+heroImg.complete && heroImg.naturalWidth ? setGreece() : heroImg.addEventListener('load', setGreece);
+
+// Sample itinerary tabs
+const tabs = [...document.querySelectorAll('.tab')];
+function selectTab(tab){
+  tabs.forEach(t => {
+    const on = t === tab;
+    t.setAttribute('aria-selected', on);
+    t.tabIndex = on ? 0 : -1;
+    const panel = document.getElementById(t.getAttribute('aria-controls'));
+    panel.hidden = !on; panel.classList.toggle('active', on);
+  });
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => selectTab(t));
+  t.addEventListener('keydown', e => {
+    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!d) return;
+    const next = tabs[(i + d + tabs.length) % tabs.length];
+    selectTab(next); next.focus();
+  });
+});
+
+// Trip form: destination chips (also pre-selected from destination posters)
+const chips = [...document.querySelectorAll('.chip')];
+chips.forEach(c => c.addEventListener('click', () => c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true')));
+document.querySelectorAll('.poster').forEach(p => p.addEventListener('click', () => {
+  const chip = chips.find(c => c.textContent === p.dataset.dest);
+  if (chip) chip.setAttribute('aria-pressed', 'true');
+}));
+
+// Static draft: no backend yet — wire to email-templates/contact-form.php when going live
+document.getElementById('tripForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('name');
+  const email = document.getElementById('email');
+  if (!name.value.trim()) return name.focus();
+  if (!email.checkValidity() || !email.value) return email.focus();
+  document.getElementById('doneTitle').textContent = `Wonderful, ${name.value.trim()} — it's started.`;
+  document.getElementById('formCard').classList.add('sent');
+});
+
+// Scroll reveal
+const io = new IntersectionObserver(entries => entries.forEach(en => {
+  if (en.isIntersecting){ en.target.classList.add('shown'); io.unobserve(en.target); }
+}), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 80 + 'ms';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
